@@ -1,0 +1,370 @@
+/*
+ *  This is the file where you put your CSS changes. 
+ *  You should preferrably use this and override the 
+ *  relevant properties you want to change here instead 
+ *  of customizing plone.css to survive upgrades. Writing
+ *  your own plone.css only makes sense for very heavy 
+ *  customizations. Useful variables from Plone are 
+ *  documented at the bottom of this file.
+ */
+ 
+/* <dtml-with base_properties> (do not remove this :) */
+/* <dtml-call "REQUEST.set('portal_url', portal_url())"> (not this either :) */
+
+
+/* DELETE THIS LINE AND PUT YOUR CUSTOM STUFF HERE */
+
+/*======================
+INITIAL SET UP ELEMENTS
+========================*/
+body 
+{
+	background-color: #EBEBEB;
+}
+#visual-portal-wrapper {
+    border-left: 1px solid #666666;
+	border-right: 1px solid #666666;
+    margin-left:20px !important;
+    margin-right:20px !important; 
+}
+
+
+/*======================
+MAIN UWO  HEADER ELEMENTS
+========================*/
+#uwoheader {
+	background-image: url("uwoheader.gif");
+	background-repeat:no-repeat;
+	background-color:black;
+	border:1px solid #cc9900;
+	height:40px;
+	margin-bottom:1px;
+	clear:both;
+}
+#uwoheader a{
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+    border: 0;
+    margin: 0;
+    padding: 0;
+    padding-top: 66px;
+    height: 0px !important;
+    width: 200px;
+    cursor: pointer;}
+
+#portal-siteactions li a{
+    border:none;
+    border-left:solid black 1px;
+    color:black;
+}
+
+ul#portal-globalnav li.selected a{
+    
+}
+ul#portal-globalnav li.plain a{
+    
+}
+
+#portal-searchbox {
+    margin:0px;
+}
+
+#portal-header {
+    background-color:#efefef;
+    min-width:760px;
+}
+
+#logo_wrapper {
+    background-image: url("oielogobak.jpg");
+    background-repeat:repeat-x;
+    background-position:left;
+    margin: 0em 0em 0em 0em;
+    padding:0em 0em 0em 0em;
+    background-color:#f5a64a;
+}
+
+#portal-logo {
+    background-position:left;
+    height:80px;
+    margin: 0em 0em 0em 0em;
+}
+
+/*======================
+TAB ELEMENTS
+========================*/
+
+#portal-globalnav {
+    background-image:url(oietabbak.jpg);
+    padding:1px 1px 9px 1em;
+    border-bottom:1px solid black;
+}
+
+#portal-globalnav li.plain a, #portal-globalnav li.selected a{
+    color:black;
+    border:none;
+    background-color:transparent;
+    padding-right:5px;
+    padding-left: 5px;
+    padding-bottom: 3px;
+    padding-top:2px;
+}
+
+
+#portal-globalnav li.selected a{
+    text-decoration:underline;
+}
+#portal-globalnav li a:hover{
+    background-color: #FFC167;
+    padding-right:4px;
+    padding-left: 4px;
+    color: black;
+    border: 1px solid purple;
+}
+
+
+/*======================
+PERSONAL TOOLBAR
+========================*/
+
+#portal-personaltools{
+    background-image:url("oiePersonalToolbarBak.jpg");
+    border:none;
+}
+
+#portal-breadcrumbs {
+    background-color:white;
+    border:none;
+}
+
+
+/*======================
+NAVIGATION
+========================*/
+.portletHeader {
+    color:#ffffff;
+    background-color:#333333;
+}
+
+.portletHeader a {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    color:white;
+}
+
+#portal-column-one {
+    width:200px;
+    background:#acacac;
+}
+
+#portal-column-one dd, #portal-column-one dt{
+    border:none;
+}
+
+#portal-column-one .visualPadding {
+    padding: 0em 0em 1em 0em;
+}
+
+dl.portlet {
+    border:none;    
+    background-color:transparent;
+}
+
+dd.portletItem{
+    padding:1.5em 0em;
+    border:none;
+}
+
+.visualIcon,.visualIcon contenttype-document {
+    background-image:;
+}
+
+.navTreeItem a,
+dd.portletItem .navTreeItem a {
+    border:none;
+    border-bottom:1px #757575 solid;
+    color:black;
+    padding:3px 0px 3px 20px;
+}
+
+.navTreeItem a:hover {
+    background-color:#d8d7d7 !important;
+    border-top:0px !important;
+    border-right:0px !important;
+    border-left:0px !important;
+}
+
+.navTreeCurrentItem {
+    background-color:transparent;
+    border:none!important;
+    border-bottom:1px #757575 solid !important;
+}
+
+#portlet-login {
+    background-image:url("oieLoginbak.jpg");
+    background-repeat:x;
+    background-color:#f5a64a;
+}
+
+#portlet-login dd {
+    padding-left:10px;
+}
+
+#portlet-login .even {
+    background-color:transparent;
+}
+
+#portlet-login .even, #portlet-login .odd , #portlet-login .lastItem{
+    background-color:transparent;
+    padding:3px;
+}
+
+table#thePloneCalendar {
+    background-color:#e3e2e2;
+    border:none;
+    margin:0px 2px;
+}
+
+.ploneCalendar th{
+    background-color:#e3e2e2;
+}
+
+.ploneCalendar tr.weekdays td {
+    background-color:#cac9c9;
+    border:none;
+}
+
+#portlet-workflow-review dd{
+    padding-left: 5px;
+    padding-right:5px;
+    padding-bottom:3px;
+    padding-top:3px;
+}
+
+a.state-private {
+    color:navy !important;
+}
+
+.navTreeCurrentItem {
+    font-weight:bold;
+}
+
+.portletItemDetailsState {
+    color:navy;
+    font-weight:bold;
+    display:block;
+    text-align:right;
+}
+
+dd.portletFooter a {
+}
+
+/*======================
+CONTENT
+========================*/
+
+h1.documentFirstHeading, h1 {
+    font-size: medium;
+	color: #333333;
+	padding: 0px;
+}
+
+#portal-column-content {
+    background-color:white;
+}
+
+.documentContent {
+    padding-top:0px!important;
+}
+
+
+/*======================
+FOOTER
+========================*/
+
+#portal-footer {
+    background-color: #0C0C0C;
+    border-top: 1px solid #000000;
+    border-bottom: 1px solid #000000;
+    text-align: center;
+    color: #999999;
+    margin-top:0px;
+}
+
+/* </dtml-with> */
+
+/* DOCUMENTATION ON PRE-DEFINED PROPERTIES FROM PLONE */
+
+ /* You can insert colors and other variables from Plone's 
+    base_properties by doing:
+    
+    & dtml-variableName ; (without the spaces, excluded here to not make it render)
+    
+    Example:
+    
+    myLink {
+        color: & dtml-fontColor ;   (again, without the spaces)
+    }
+ 
+   This means you can generate your own elements that use Plone's defaults,
+   and respect any customizations people have done. See base_properties for
+   the default values.
+ 
+   These are the available properties:
+   
+   logoName - the file name of the portal logo
+   
+   fontFamily - the font family used for all text that is not headers
+   
+   fontBaseSize - the base font size that everything is calculated from
+   
+   fontColor - the main font color
+   
+   fontSmallSize - used for various elements like buttons and discreet text
+   
+   discreetColor - the font color of discreet text
+
+   backgroundColor - the background color 
+   
+   linkColor - the color used on normal links
+
+   linkActiveColor - color used on active links
+
+   linkVisitedColor - color used on visited links
+   
+   borderWidth - the width of most borders in Plone
+   
+   borderStyle - the style of the border lines, normally solid
+   
+   borderStyleAnnotations - style of border lines on comments etc
+   
+   globalBorderColor - the border color used on the main tabs, the portlets etc
+   
+   globalBackgroundColor - background color for the selected tabs, portlet headings etc
+   
+   globalFontColor - the color of the font in the tabs and in portlet headings
+   
+   headingFontFamily - font family for h1/h2/h3/h4/h5/h6 headlines
+   
+   contentViewBorderColor - the content view tabs border color
+   
+   contentViewBackgroundColor - the content view tabs background color
+   
+   contentViewFontColor - the font color used in the content view tabs
+   
+   inputFontColor - the font color used for input elements
+   
+   textTransform - whether to lowercase text in portlets, tabs etc.
+   
+   evenRowBackgroundColor - the background color of even rows in listings
+   
+   oddRowBackgroundColor - the background color of even rows in listings
+   
+   notifyBorderColor - border color of notification elements like the status message, the calendar focus
+   
+   notifyBackgroundColor - background color of notification elements like the status message, the calendar focus
+   
+   helpBackgroundColor - background color of information pop-ups (currently not used)
+          
+ */
+
+

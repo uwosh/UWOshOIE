@@ -1,0 +1,5 @@
+[validators]
+validators = validateEmplidsAndFieldName
+
+[actions]
+action.success = traverse_to:string:oieMassUpdateFormStep2

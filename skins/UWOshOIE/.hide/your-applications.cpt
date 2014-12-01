@@ -1,0 +1,123 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US"
+lang="en-US" i18n:domain="plone"
+metal:use-macro="here/main_template/macros/master">
+  <body>
+    <div metal:fill-slot="main"
+        tal:define="errors options/state/getErrors;
+                          user context/portal_membership/getAuthenticatedMember/getUserName | nothing;">
+
+     <form tal:condition="not: here/portal_membership/isAnonymousUser"
+           method="post" 
+           tal:attributes="action template/id;"
+           tal:define="member python: context.portal_membership.getAuthenticatedMember().getId(); 
+                       all_applications python: context.queryCatalog({'portal_type':'OIEStudentApplication', 'Creator':member, })">
+
+         <p class="error_message" tal:define="err errors/n|nothing" tal:condition="err"><b tal:content="err" /></p>
+        
+         <div tal:condition="all_applications">
+             <p>
+                Here are your existing applications.  To view or edit one, click on the appropriate action link next to it.
+             </p>
+             <table border=1 cellpadding=2 cellspacing=2>
+                <tr>
+                <th>Program Name</th><th>Year</th><th>Sem</th><th>LName</th><th>FName</th><th>Application ID</th><th>State</th><th>Action</th>
+                </tr>
+                <tal:block
+                 tal:define="member python: context.portal_membership.getAuthenticatedMember().getId()"
+                 tal:repeat="app all_applications">
+                    <tr>
+                       <tal:block
+                         tal:define="obj python: app.getObject();
+                                     url obj/absolute_url;
+                                     objId obj/getId;
+                                     pgmYear obj/getProgramYear;
+                                     pgmSem obj/getProgramSemester;
+                                     pgmName obj/getProgramName;
+		                     lName obj/getLastName;
+		                     fName obj/getFirstName;
+		                     state python:wtool.getInfoFor(obj, 'review_state')">
+
+                           <td>
+                             <span tal:condition="python: not pgmName" tal:replace="string: -" />
+                             <span tal:condition="python: pgmName"     tal:replace="string: $pgmName" />
+                           </td>
+                           <td>
+                             <span tal:condition="python: not pgmYear" tal:replace="string:  - " />
+                             <span tal:condition="python: pgmYear"     tal:replace="string:  $pgmYear " />
+                           </td>
+                           <td>
+                             <span tal:condition="python: not pgmSem" tal:replace="string: - " />
+                             <span tal:condition="python: pgmSem"     tal:replace="string: $pgmSem" />
+                           </td>
+                           <td>
+                             <span tal:condition="python: not lName" tal:replace="string: - " />
+                             <span tal:condition="python: lName"     tal:replace="lName" />
+                           </td>
+                           <td>
+                             <span tal:condition="python: not fName" tal:replace="string: - " />
+                             <span tal:condition="python: fName"     tal:replace="fName" />
+                           </td>
+                           <td>
+                             <span tal:replace="string: $objId " />
+                           </td>
+                           <td>
+                             <span tal:replace="state" />
+                           </td>
+                          <td>
+                             <a tal:define="id python: app.getObject().getId()"
+                                href=""
+                                tal:attributes="href python: app.getObject().absolute_url();">View 
+                            </a>
+                            or 
+                            <a href="" tal:attributes="href python: url + '/edit';">Edit</a>
+                           </td>
+                        </tal:block>
+                    </tr>
+                </tal:block>
+             </table>
+             <p>
+               &nbsp;
+             </p>
+         </div>
+         <div tal:condition="not: all_applications">
+             <p>
+                You have no existing applications.  
+             </p>
+         </div>
+         <div>
+             <p>
+                 To create a new application, click on the button below:
+             </p>
+             <p>
+                 <input type="submit" name="form.submitted" value="Create new application >" />
+             </p>
+         </div>
+     </form>
+
+
+     <form tal:condition="here/portal_membership/isAnonymousUser "
+           method="post" tal:attributes="action template/id;">
+      <p class="error_message" tal:define="err errors/n|nothing" tal:condition="err"><b tal:content="err" /></p>
+
+         <h2>View Your Applications</h2>
+         
+         <p>You must <a href="login_form?came_from=your-applications">log in</a> to view your existing study abroad applications.
+         </p>
+         
+         <p>If you are a new applicant and would like to create a new application, please <a href="new-applicant">go here instead</a>.
+         </p>
+         
+            
+         <!--
+             <form method="POST" tal:attributes="action string:${here/absolute_url}/${template/id};">
+               <p class="error_message" tal:define="err errors/n|nothing" tal:condition="err"><b tal:content="err" /></p>
+               <p>Enter a value: <input name="n" type="text" value=""></p>
+               <p><input type="submit" name="form.button.submit" value="Submit" /></p>
+               <input type="hidden" name="form.submitted" value="1" />
+             </form>
+         -->
+     </form>
+
+   </div>
+  </body>
+</html>

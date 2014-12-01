@@ -1,0 +1,58 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+<body>
+<div metal:define-macro="portlet"
+     tal:define="	DateTime python:modules['DateTime'].DateTime;
+                 	applications here/my_uwoshoie_worklist;
+					applications python: applications[0:12]"
+     tal:condition="applications">
+
+<dl class="portlet" id="portlet-workflow-review">
+
+    <dt class="portletHeader"
+        i18n:translate="box_review_list">OIE Review List</dt>
+
+    <tal:items repeat="app applications">
+    <dd class="UWOshPortletItem"
+        tal:define="oddrow repeat/app/odd"
+        tal:attributes="class python:test(oddrow, 'portletItem even','portletItem odd')">
+
+        <div>
+        <a href="#"
+           tal:attributes="href string:${app/absolute_url}/view;
+                           title app/Description">
+            <span class="UWOshPortletItemDetails"
+                  tal:define="	moddate app/ModificationDate|nothing;
+	                      		lName app/getLastName|nothing;
+	                      		fName app/getFirstName|nothing;"
+                  tal:content="string: $fName $lName">Jim Bob 
+			</span>
+			<br />
+			<span 	class="UWOshPorletItemDetails"
+					tal:define="programName app/getProgramName|nothing;
+                    			pName python: programName != None and programName.Title();
+								pName python: (not pName and 'No Program Selected') or pName;
+              					pYear app/getProgramYear|nothing;"
+					tal:content="string: $pName - $pYear">
+				Euro Odyssey - 2008
+			</span>
+            <div tal:define="state python:wtool.getInfoFor(app, 'review_state');" tal:attributes="class string:portletItemDetailsState" >
+              <span tal:attributes="id string:$state"
+                    tal:content="string:[$state]">[state]</span>
+            </div>
+        </a>
+        </div>
+
+    </dd>
+    </tal:items>
+
+    <dd class="portletFooter">
+        <a href="#" tal:attributes="href string:${here/portal_url}/full_uwoshoie_review_list"
+	            i18n:translate="box_full_review_list">Full OIE review list&hellip;</a>
+    </dd>
+</dl>
+
+</div>
+</body>
+</html>

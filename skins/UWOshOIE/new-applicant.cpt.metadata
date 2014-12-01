@@ -1,0 +1,5 @@
+[default]
+title=Page for new applicants
+
+[actions]
+action.success=redirect_to:string:create-application

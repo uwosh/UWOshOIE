@@ -1,0 +1,6 @@
+[validators]
+validators..submit = validateEmplidsAndFieldName, validateValueField
+
+[actions]
+action.success..submit = traverse_to:string:oieMassUpdateDoUpdates
+action.success..cancel = redirect_to:string:oieMassUpdateForm

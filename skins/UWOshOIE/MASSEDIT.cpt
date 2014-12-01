@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title tal:content="template/title">The title</title>
+  </head>
+  <body tal:define="errors options/state/getErrors">
+    
+    <h2><span tal:replace="here/title_or_id">content title or id</span>
+        <span tal:condition="template/title"
+              tal:replace="template/title">optional template id</span></h2>
+
+    <form method="POST" tal:attributes="action string:${here/absolute_url}/${template/id};">
+      <p class="error_message" tal:define="err errors/emplids|nothing" tal:condition="err"><b tal:content="err" /></p>
+
+      <p>Enter emplids, one per line: <br>
+      <textarea name="emplids" id="emplids" cols="40" rows="20" value=""></p>
+
+      <p><input type="submit" name="form.button.submit" value="Submit" /></p>
+
+      <input type="hidden" name="form.submitted" value="1" />
+
+    </form>
+
+  </body>
+</html>

@@ -1,0 +1,1145 @@
+# ArchGenXML generated POT File
+# T. Kim Nguyen <nguyen@uwosh.edu>, 2007.
+msgid ""
+msgstr ""
+"Project-Id-Version: UWOshOIE\n"
+"POT-Creation-Date: Mon Feb 19 18:24:42 2007\n"
+"PO-Revision-Date: Mon Feb 19 18:24:42 2007\n"
+"Last-Translator: T. Kim Nguyen <nguyen@uwosh.edu>\n"
+"Language-Team: T. Kim Nguyen <nguyen@uwosh.edu>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: latin1 utf-8\n"
+"Domain: UWOshOIE\n"
+
+#. Default: "I hereby agree to hold harmless and indemnify the Board of Regents of the University of Wisconsin System and the University of Wisconsin Oshkosh, their officers, agents and employees, from any and all liability, loss, damages, costs or expenses which are sustained, incurred or required arising out of my actions."
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_UWOshkoshRelease"
+msgstr ""
+
+#. Default: "Enter your initials"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_agreeToCosts"
+msgstr ""
+
+#. Default: "If you are not applying for financial aid, skip to the next page."
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_applyForAid"
+msgstr ""
+
+#. Default: "Additional application requirements for select programs are listed on individual program web pages.  Not all programs have additional requirements."
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_awareOfAllMaterials"
+msgstr ""
+
+#. Default: "I certify that the information stated above is true and correct.  If accepted to the program, I agree to follow all payment and withdrawal policies and to regularly check my UW Oshkosh email account for program information beginning today.  If I am a non-UW Oshkosh student, I will use and submit an email address that I check regularly."
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_certification"
+msgstr ""
+
+#. Default: "Cultural Insurance Services International"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_cisiDates"
+msgstr ""
+
+#. Default: "Cultural Insurance Services International"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_cisiNumberOfMonths"
+msgstr ""
+
+#. Default: "if you selected Yes above"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_conflictDate"
+msgstr ""
+
+#. Default: "out of 4.0"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_cumulativeGPA"
+msgstr ""
+
+#. Default: "Specify if you are deviating from the group itinerary."
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_departureDate"
+msgstr ""
+
+#. Default: "(###) ###-####"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_doctorPhone"
+msgstr ""
+
+#. Default: "UW Oshkosh students must use a @uwosh.edu email address.  Acceptable email addresses for other applicants include school and company addresses."
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_email"
+msgstr ""
+
+#. Default: "Strongly recommended"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_emerg1email"
+msgstr ""
+
+#. Default: "(###) ###-####. Strongly recommended"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_emerg1mobilePhone"
+msgstr ""
+
+#. Default: "(###) ###-####. Strongly recommended"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_emerg1workPhone"
+msgstr ""
+
+#. Default: "(###) ###-####"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_emerg2homePhone"
+msgstr ""
+
+#. Default: "(###) ###-####"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_emerg2mobilePhone"
+msgstr ""
+
+#. Default: "(###) ###-####"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_emerg2workPhone"
+msgstr ""
+
+#. Default: "(###) ###-####"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_emerg3homePhone"
+msgstr ""
+
+#. Default: "(###) ###-####"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_emerg3mobilePhone"
+msgstr ""
+
+#. Default: "(###) ###-####"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_emerg3workPhone"
+msgstr ""
+
+#. Default: "A list of all UW Oshkosh emphases"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_help_emphases"
+msgstr ""
+
+#. Default: "You will only be enrolled if you have read the syllabus"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_enrolledIS333"
+msgstr ""
+
+#. Default: "Set by Financial Aid staff only"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_financialAidGranted"
+msgstr ""
+
+#. Default: "YYYY"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_graduationYear"
+msgstr ""
+
+#. Default: "HOLD your Study Abroad Application (i.e. you will only study abroad IF financial aid is available; at this point the application fee is still refundable but the OIE is not reserving a seat for you), or PROCESS your Study Abroad Applciation (i.e. you will study abroad regardless of your aid package; at this point the application fee is non-refundable and the OIE will reserve your seat."
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_holdApplication"
+msgstr ""
+
+#. Default: "(###) ###-####"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_homePhone"
+msgstr ""
+
+#. Default: "(###) ###-####"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_localPhone"
+msgstr ""
+
+#. Default: "A list of all UW Oshkosh majors"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_help_majors"
+msgstr ""
+
+#. Default: "Enter "none" or "n/a" where appropriate"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_medicalConditions"
+msgstr ""
+
+#. Default: "A list of all UW Oshkosh minors"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_help_minors"
+msgstr ""
+
+#. Default: "All the calendar months"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_help_months"
+msgstr ""
+
+#. Default: "Enter one date and time for the four-hour session, or enter two dates and times for the two-hour sessions"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_orientationDate1"
+msgstr ""
+
+#. Default: "if applicable"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_orientationDate2"
+msgstr ""
+
+#. Default: "A list of all OIE orientation session times/hours"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_help_orientationHours"
+msgstr ""
+
+#. Default: "orientationHours1"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_orientationHours1"
+msgstr ""
+
+#. Default: "if applicable"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_orientationHours2"
+msgstr ""
+
+#. Default: "E.g. New Orleans or National Passport Agency"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_passportIssueOffice"
+msgstr ""
+
+#. Default: "Enter your full name EXACTLY as it appears on your passport or passport application"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_passportName"
+msgstr ""
+
+#. Default: "Enter "none" or "n/a" where appropriate"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_physicalHandicaps"
+msgstr ""
+
+#. Default: "Enter city, state, and country"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_placeOfBirth"
+msgstr ""
+
+#. Default: "A list of all OIE programs"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_help_programNames"
+msgstr ""
+
+#. Default: "Enter the year you will actually be attending the program (YYYY)"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_programYear"
+msgstr ""
+
+#. Default: "a) Briefly, what are your short- and long-term academic and career goals?  b) Why would you like to participate in this program? c) What do you expect to gain from your experience?"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_questionAcadCareerPlan"
+msgstr ""
+
+#. Default: "Include the name of the company(ies) you are currently working for and your title(s)."
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_questionEuroBizTravSem"
+msgstr ""
+
+#. Default: "a) this program as a whole?  b) the pre-travel general orientation session?  c) the pre-travel academic sessions?  d) your hosts (host institution, family, etc.) in the foreign country (if applicable)?"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_questionExpectations"
+msgstr ""
+
+#. Default: "a) Have you studied a foreign language? If so, what is your level of fluency?  b) Have you completed any University-level courses on the culture or history of your destination? If so, explain.  c) Have you ever been immersed in a language and/or culture abroad? If so, please explain.  d) Do you plan to use a foreign language in a professional setting? If yes, please explain."
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_questionLangCulturalSkills"
+msgstr ""
+
+#. Default: "Have you traveled abroad? If so, list the places to which you have traveled along with the dates and purpose."
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_questionPrevTravel"
+msgstr ""
+
+#. Default: "Add anything else you think we should consider when reviewing your application."
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_questionStuExchComp"
+msgstr ""
+
+#. Default: "a) Who is your current employer?  b) If relevant to your study abroad program, list and describe your responsibilities from current and previous jobs."
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_questionWorkExp"
+msgstr ""
+
+#. Default: "Specify if you are deviating from the group itinerary."
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_returnDate"
+msgstr ""
+
+#. Default: "(if applicable)"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_studentID"
+msgstr ""
+
+#. Default: "A list of all UW Oshkosh course subjects"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_help_subjects"
+msgstr ""
+
+#. Default: "optional"
+#: content/OIEStudent.py
+msgid "UWOshOIE_help_title"
+msgstr ""
+
+#. Default: "No abbreviations please"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_universityEnrolled"
+msgstr ""
+
+#. Default: "Please note: while a group bus is an option for most programs, not all programs offer this option."
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_help_willTakeBus"
+msgstr ""
+
+#. Default: "Release of Liability"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_UWOshkoshRelease"
+msgstr ""
+
+#. Default: "Is there anything else your host families or the OIE should know about your accommodation needs?"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_additionalNeeds"
+msgstr ""
+
+#. Default: "Faculty-led Programs: I understand that if I deviate, I will still be responsible for the entire program cost, regardless of whether I participate in all events or make use of all services.  I agree"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_agreeToCosts"
+msgstr ""
+
+#. Default: "Application Fee Refunded"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_applicationFeeRefund"
+msgstr ""
+
+#. Default: "Application is Complete"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_applicationIsComplete"
+msgstr ""
+
+#. Default: "Are you applying for financial aid?"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_applyForAid"
+msgstr ""
+
+#. Default: "Attended Orientation"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_attendedOrientation"
+msgstr ""
+
+#. Default: "Are you aware of the application requirements for your program?"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_awareOfAllMaterials"
+msgstr ""
+
+#. Default: "Certification"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_certification"
+msgstr ""
+
+#. Default: "CISI Dates"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_cisiDates"
+msgstr ""
+
+#. Default: "CISI Number of Months"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_cisiNumberOfMonths"
+msgstr ""
+
+#. Default: "Citizenship"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_citizenship"
+msgstr ""
+
+#. Default: "Enter country of citizenship if you selected Other"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_citizenshipOther"
+msgstr ""
+
+#. Default: "Comments"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_comments"
+msgstr ""
+
+#. Default: "Date of your conflict"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_conflictDate"
+msgstr ""
+
+#. Default: "Course Number"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_course1"
+msgstr ""
+
+#. Default: "Course Number"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_course2"
+msgstr ""
+
+#. Default: "Course Number"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_course3"
+msgstr ""
+
+#. Default: "Course Number"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_course4"
+msgstr ""
+
+#. Default: "Course Number"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_course5"
+msgstr ""
+
+#. Default: "Course Number"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_course6"
+msgstr ""
+
+#. Default: "Credits"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_credits1"
+msgstr ""
+
+#. Default: "Credits"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_credits2"
+msgstr ""
+
+#. Default: "Credits"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_credits3"
+msgstr ""
+
+#. Default: "Credits"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_credits4"
+msgstr ""
+
+#. Default: "Credits"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_credits5"
+msgstr ""
+
+#. Default: "Credits"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_credits6"
+msgstr ""
+
+#. Default: "Cumulative GPA"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_cumulativeGPA"
+msgstr ""
+
+#. Default: "Birthday (Day)"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_dateOfBirth_day"
+msgstr ""
+
+#. Default: "Birthday (Month)"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_dateOfBirth_month"
+msgstr ""
+
+#. Default: "Birthday (Year, YYYY)"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_dateOfBirth_year"
+msgstr ""
+
+#. Default: "Planned Departure Date"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_departureDate"
+msgstr ""
+
+#. Default: "Deposit Paid on Time"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_depositOnTime"
+msgstr ""
+
+#. Default: "Description"
+#: content/OIEStudent.py
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_description"
+msgstr ""
+
+#. Default: "First Name of your Family Doctor"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_doctorFirstname"
+msgstr ""
+
+#. Default: "Last Name of your Family Doctor"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_doctorLastname"
+msgstr ""
+
+#. Default: "Doctor's Phone Number"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_doctorPhone"
+msgstr ""
+
+#. Default: "Email Address"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_email"
+msgstr ""
+
+#. Default: "Emergency Contact 1 Address Line 1"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1addr1"
+msgstr ""
+
+#. Default: "Emergency Contact 1 Address Line 2"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1addr2"
+msgstr ""
+
+#. Default: "Emergency Contact 1 City"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1city"
+msgstr ""
+
+#. Default: "Emergency Contact 1 Country"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1country"
+msgstr ""
+
+#. Default: "Emergency Contact 1 Email"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1email"
+msgstr ""
+
+#. Default: "Emergency Contact 1 Home Phone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1homePhone"
+msgstr ""
+
+#. Default: "Emergency Contact 1 Mobile Phone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1mobilePhone"
+msgstr ""
+
+#. Default: "Emergency Contact 1 Name"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1name"
+msgstr ""
+
+#. Default: "Emergency Contact 1 State"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1state"
+msgstr ""
+
+#. Default: "Emergency Contact 1 Work Phone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1workPhone"
+msgstr ""
+
+#. Default: "Emergency Contact 1 Zip Code"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg1zip"
+msgstr ""
+
+#. Default: "Emergency Contact 2 Address Line 1"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2addr1"
+msgstr ""
+
+#. Default: "Emergency Contact 2 Address Line 2"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2addr2"
+msgstr ""
+
+#. Default: "Emergency Contact 2 City"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2city"
+msgstr ""
+
+#. Default: "Emergency Contact 2 Country"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2country"
+msgstr ""
+
+#. Default: "Emergency Contact 2 Email"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2email"
+msgstr ""
+
+#. Default: "Emergency Contact 2 Home Phone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2homePhone"
+msgstr ""
+
+#. Default: "Emergency Contact 2 Mobile Phone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2mobilePhone"
+msgstr ""
+
+#. Default: "Emergency Contact 2 Name"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2name"
+msgstr ""
+
+#. Default: "Emergency Contact 2 State"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2state"
+msgstr ""
+
+#. Default: "Emergency Contact 2 Work Phone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2workPhone"
+msgstr ""
+
+#. Default: "Emergency Contact 2 Zip Code"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg2zip"
+msgstr ""
+
+#. Default: "Emergency Contact 3 Address Line 1"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3addr1"
+msgstr ""
+
+#. Default: "Emergency Contact 3 Address Line 2"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3addr2"
+msgstr ""
+
+#. Default: "Emergency Contact 3 City"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3city"
+msgstr ""
+
+#. Default: "Emergency Contact 3 Country"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3country"
+msgstr ""
+
+#. Default: "Emergency Contact 3 Email"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3email"
+msgstr ""
+
+#. Default: "Emergency Contact 3 Home Phone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3homePhone"
+msgstr ""
+
+#. Default: "Emergency Contact 3 Mobile Phone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3mobilePhone"
+msgstr ""
+
+#. Default: "Emergency Contact 3 Name"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3name"
+msgstr ""
+
+#. Default: "Emergency Contact 3 State"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3state"
+msgstr ""
+
+#. Default: "Emergency Contact 3 Work Phone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3workPhone"
+msgstr ""
+
+#. Default: "Emergency Contact 3 Zip Code"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_emerg3zip"
+msgstr ""
+
+#. Default: "Emphases"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_label_emphases"
+msgstr ""
+
+#. Default: "Emphasis"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_emphasis"
+msgstr ""
+
+#. Default: "Enroll me in International Studies 333"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_enrolledIS333"
+msgstr ""
+
+#. Default: "Ethnicity"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_ethnicity"
+msgstr ""
+
+#. Default: "Enter ethnicity if you selected Other"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_ethnicityOther"
+msgstr ""
+
+#. Default: "Financial Aid Granted?"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_financialAidGranted"
+msgstr ""
+
+#. Default: "First Name"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_firstName"
+msgstr ""
+
+#. Default: "List any allergies (food, pet, etc.)"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_foodAllergies"
+msgstr ""
+
+#. Default: "Gender"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_gender"
+msgstr ""
+
+#. Default: "Expected Graduation Month"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_graduationMonth"
+msgstr ""
+
+#. Default: "Expected Graduation Year"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_graduationYear"
+msgstr ""
+
+#. Default: "Do you have a condition which would make it difficult to walk long distances?"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_hasDifficultyWalking"
+msgstr ""
+
+#. Default: "Should the OIE hold or process your application?"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_holdApplication"
+msgstr ""
+
+#. Default: "Home Address Line 1"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_homeAddr1"
+msgstr ""
+
+#. Default: "Home Address Line 2"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_homeAddr2"
+msgstr ""
+
+#. Default: "Home City"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_homeCity"
+msgstr ""
+
+#. Default: "Home Country"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_homeCountry"
+msgstr ""
+
+#. Default: "Home Telephone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_homePhone"
+msgstr ""
+
+#. Default: "Home State"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_homeState"
+msgstr ""
+
+#. Default: "Home Zip Code"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_homeZip"
+msgstr ""
+
+#. Default: "Are you vegetarian?"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_isVegetarian"
+msgstr ""
+
+#. Default: "Last Name"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_lastName"
+msgstr ""
+
+#. Default: "Local Address Line 1"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_localAddr1"
+msgstr ""
+
+#. Default: "Local Address Line 2"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_localAddr2"
+msgstr ""
+
+#. Default: "Local City"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_localCity"
+msgstr ""
+
+#. Default: "Local Country"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_localCountry"
+msgstr ""
+
+#. Default: "Local Telephone"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_localPhone"
+msgstr ""
+
+#. Default: "Local State"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_localState"
+msgstr ""
+
+#. Default: "Local Zip Code"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_localZip"
+msgstr ""
+
+#. Default: "First Major"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_major1"
+msgstr ""
+
+#. Default: "Second Major"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_major2"
+msgstr ""
+
+#. Default: "Majors"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_label_majors"
+msgstr ""
+
+#. Default: "Marital Status"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_marriageStatus"
+msgstr ""
+
+#. Default: "If so, what is the maximum number of minutes you can walk?"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_maxWalkingDistance"
+msgstr ""
+
+#. Default: "Please describe medical conditions, if any, that should be brought to the attention of the lead faculty member or a physician, i.e. asthma or diabetes"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_medicalConditions"
+msgstr ""
+
+#. Default: "Medicalform"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_medicalForm"
+msgstr ""
+
+#. Default: "Name of Insurance Company"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_medicalInsuranceCompany"
+msgstr ""
+
+#. Default: "Policy / Group Number"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_medicalPolicyGroupNumber"
+msgstr ""
+
+#. Default: "Name of Policy Holder"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_medicalPolicyHolder"
+msgstr ""
+
+#. Default: "Met Passport Deadline"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_metPassportDeadline"
+msgstr ""
+
+#. Default: "Minor"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_minor"
+msgstr ""
+
+#. Default: "Minors"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_label_minors"
+msgstr ""
+
+#. Default: "Months"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_label_months"
+msgstr ""
+
+#. Default: "Nomorematerials"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_noMoreMaterials"
+msgstr ""
+
+#. Default: "The following number of people will attend with me"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_numberOfGuests"
+msgstr ""
+
+#. Default: "Do you have a conflict with any of the other pre-travel academic and/or orientation sessions?"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_orientationConflict"
+msgstr ""
+
+#. Default: "I will attend the family orientation on"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_orientationDate1"
+msgstr ""
+
+#. Default: "Orientation Session 2 Date"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_orientationDate2"
+msgstr ""
+
+#. Default: "OIE Orientation Session Hours"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_label_orientationHours"
+msgstr ""
+
+#. Default: "Orientation Session 1 hours"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_orientationHours1"
+msgstr ""
+
+#. Default: "Orientation Session 2 hours"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_orientationHours2"
+msgstr ""
+
+#. Default: "Passport Expiry Day"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_passportExpDate_day"
+msgstr ""
+
+#. Default: "Passport Expiry Month"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_passportExpDate_month"
+msgstr ""
+
+#. Default: "Passport Expiry Year"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_passportExpDate_year"
+msgstr ""
+
+#. Default: "Passport Issuing Office"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_passportIssueOffice"
+msgstr ""
+
+#. Default: "Full Name"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_passportName"
+msgstr ""
+
+#. Default: "Passport Number"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_passportNumber"
+msgstr ""
+
+#. Default: "Payment 2 on Time"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_payment2OnTime"
+msgstr ""
+
+#. Default: "Please describe any physical handicaps or disabilities"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_physicalHandicaps"
+msgstr ""
+
+#. Default: "Place of Birth"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_placeOfBirth"
+msgstr ""
+
+#. Default: "Program Fee"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_programFee"
+msgstr ""
+
+#. Default: "Programfee2"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_programFee2"
+msgstr ""
+
+#. Default: "Programmaterials"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_programMaterials"
+msgstr ""
+
+#. Default: "Program Name"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_programName"
+msgstr ""
+
+#. Default: "OIE Programs"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_label_programNames"
+msgstr ""
+
+#. Default: "Semester"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_programSemester"
+msgstr ""
+
+#. Default: "Program Year"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_programYear"
+msgstr ""
+
+#. Default: "Academic and Career Plan (required)"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_questionAcadCareerPlan"
+msgstr ""
+
+#. Default: "European Business Travel Seminar Only"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_questionEuroBizTravSem"
+msgstr ""
+
+#. Default: "Your Expectations For (required)"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_questionExpectations"
+msgstr ""
+
+#. Default: "Language and Cultural Skills (required)"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_questionLangCulturalSkills"
+msgstr ""
+
+#. Default: "Previous Travel Experience (required)"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_questionPrevTravel"
+msgstr ""
+
+#. Default: "Student Exchange and Competitive Programs Only"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_questionStuExchComp"
+msgstr ""
+
+#. Default: "Work Experience (required)"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_questionWorkExp"
+msgstr ""
+
+#. Default: "I have read the syllabus for the one-credit course International Studies 333"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_readSyllabus"
+msgstr ""
+
+#. Default: "Planned Return Date"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_returnDate"
+msgstr ""
+
+#. Default: "Room Type"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_roomType"
+msgstr ""
+
+#. Default: "Roommate 1 Name"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_roommateName1"
+msgstr ""
+
+#. Default: "Roommate 2 Name"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_roommateName2"
+msgstr ""
+
+#. Default: "Seatnumber"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_seatNumber"
+msgstr ""
+
+#. Default: "Smoking Preference"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_smokingPreferred"
+msgstr ""
+
+#. Default: "State Residency"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_stateResidency"
+msgstr ""
+
+#. Default: "Enter state of residency if you selected Other"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_stateResidencyOther"
+msgstr ""
+
+#. Default: "UW Oshkosh Student ID"
+#: content/OIEStudent.py
+msgid "UWOshOIE_label_studentID"
+msgstr ""
+
+#. Default: "Student Type"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_studentType"
+msgstr ""
+
+#. Default: "Course 1 subject"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_subject1"
+msgstr ""
+
+#. Default: "Course 2 subject"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_subject2"
+msgstr ""
+
+#. Default: "Course 3 subject"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_subject3"
+msgstr ""
+
+#. Default: "Course 4 subject"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_subject4"
+msgstr ""
+
+#. Default: "Course 5 subject"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_subject5"
+msgstr ""
+
+#. Default: "Course 6 subject"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_subject6"
+msgstr ""
+
+#. Default: "Subjects"
+#: content/OIEStudentFolder.py
+msgid "UWOshOIE_label_subjects"
+msgstr ""
+
+#. Default: "Full Name"
+#: content/OIEStudent.py
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_title"
+msgstr ""
+
+#. Default: "Tuition Payment"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_tuitionPayment"
+msgstr ""
+
+#. Default: "Name of other university"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_universityEnrolled"
+msgstr ""
+
+#. Default: "Transportation: Flights"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_willFlyWithGroup"
+msgstr ""
+
+#. Default: "Transportation: Bus"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_willTakeBus"
+msgstr ""
+
+#. Default: "Withdrawal Refund"
+#: content/OIEProgramApplication.py
+msgid "UWOshOIE_label_withdrawalRefund"
+msgstr ""
+

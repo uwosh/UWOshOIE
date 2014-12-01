@@ -1,0 +1,5 @@
+[default]
+title=Page for viewing, editing, and creating applications
+
+[actions]
+action.success=redirect_to:string:create-application

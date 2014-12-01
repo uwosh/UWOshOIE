@@ -1,0 +1,13 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      i18n:domain="plone">
+<body>
+<div id="portal-footer" metal:define-macro="portal_footer" i18n:domain="plone">
+
+<p>
+    Office of International Education <br /><a href="http://www.uwosh.edu">The University of Wisconsin Oshkosh</a>
+</p>
+
+
+</div>
+</body>
+</html>

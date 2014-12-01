@@ -1,0 +1,11 @@
+[default]
+title=Rename items
+
+[validators]
+validators=
+validators..Cancel=
+
+[actions]
+action.success=traverse_to:string:confirm_content_status_modify_action
+action.success..Cancel=redirect_to_action:string:view
+action.failure=redirect_to_action:string:view

@@ -1,0 +1,44 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+  <metal:block fill-slot="top_slot"
+               tal:define="dummy python:request.set('disable_border',1)" />
+
+  <body>
+    
+    <div metal:fill-slot="main">
+
+      <h1>List of Workflow States</h1>
+
+      
+      <tal:state tal:repeat="state python: context.get_oie_states_ids()">
+	<table class="error"
+			tal:define="state_info python: context.get_state_info(state)">
+	<tr>
+	  <th>
+	    <a tal:attributes="href python: state_info['url']" tal:content="state">State Name</a>
+	  </th>
+	  <th>
+	    <p tal:content="python: state_info['title']" tal:omit-tag=""> State Title</p>
+	  </th>
+	</tr>
+
+	<tal:transitions tal:repeat="transition python: state_info['transitions']">
+	  <tr tal:define="trans python: context.get_transition_info(transition)">
+	    <td class="left_data_in_table">
+	      <a tal:attributes="href python: trans['url']" tal:content="transition">
+		Transition Link
+	      </a>
+	    </td>
+	    <td>
+	      <p tal:content="python: trans['title']" tal:omit-tag="">Transition Title</p>
+	    </td>
+	  </tr>
+	</tal:transitions>
+</table>
+      </tal:state>
+    </div>
+
+  </body>
+</html>

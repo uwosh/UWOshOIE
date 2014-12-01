@@ -1,0 +1,149 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+<head>
+    <metal:block fill-slot="top_slot"
+                 tal:define="dummy python:request.set('disable_border',1)" />
+    <metal:block fill-slot="column_one_slot" />
+    <metal:block fill-slot="column_two_slot" />
+</head>
+
+<body>
+<div metal:fill-slot="main"
+     tal:define="err_type options/error_type|nothing;
+                 err_message options/error_message|nothing;
+                 err_tb options/error_tb|nothing;
+                 err_value options/error_value|nothing;
+                 err_traceback options/error_traceback|nothing;">
+
+        <div tal:condition="python:err_type=='NotFound'">
+
+            <h1 i18n:translate="heading_site_error_apologies">Our apologies...</h1>
+
+            <p i18n:translate="description_site_error_does_not_exist">
+            The item you requested does not exist on this server or cannot be served.
+            </p>
+
+            <p i18n:translate="description_site_error_double_check_or_search">
+            Please double check the web address or use the search function on this page to find what you are looking for.
+            </p>
+
+            <p i18n:translate="description_site_error_mail_admin">
+            If you know you have the correct web address but are encountering an error, please
+            contact the <span i18n:name="site_admin">
+            <a href="#" 
+               i18n:translate="label_site_admin"
+               tal:attributes="href string:${portal_url}/contact-info">Site Administration</a></span>.
+            </p>
+
+            <p i18n:translate="description_site_error_thank_you">
+            Thank you.
+            </p>
+
+            <code i18n:translate="text_error_not_found">
+            404 Not Found
+            </code>
+
+        </div>
+		<div tal:condition="python: err_type == 'StateError'" >
+			<h1 i18n:translate="heading_site_error">You have incorrectly filled out the application.</h1>
+    
+            <p i18n:translate="description_site_error">
+            	You cannot process this application until you fix these errors.
+            </p>
+			
+			<div id="UWOshOIEFunkyButtons">
+				<ul>
+					<li>
+					<a tal:attributes="href python: context.absolute_url()">
+						Go Back To Application
+					</a>
+					</li>
+				</ul>
+			</div><br /><br /><br />
+			<div tal:repeat="errors err_value">
+				<div tal:repeat="err errors">
+					<div tal:define="values python: errors[err]">
+						<div class="state-error">
+						<h3 tal:content="python: 'Section: ' + err"></h3>
+						<table class="error">
+							<th >Expected</th>
+							<th >Current Value</th>
+							<th >Field Description</th>
+							<th >Explanation</th>
+							<tr tal:repeat="val values">
+								<td width=150 tal:content="python: val['expected']">Expected</td>
+								<td width=150 tal:content="python: val['current_value']">Current</td>
+								<td width=250 tal:content="python: val['field']">Field</td>
+								<td width=200 tal:content="python: val['message']">Explanation</td>
+							</tr>
+						</table>
+						<div id="UWOshOIEFunkyButtons">
+							<ul>
+								<li>
+								<a tal:attributes="href python: context.absolute_url() + '/base_edit?fieldset=' + err">
+									Edit This Section
+								</a>
+								</li>
+							</ul>
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+
+        <div tal:condition="python: err_type != 'NotFound' and err_type != 'StateError'">
+
+		            <h1 i18n:translate="heading_site_error">Site error</h1>
+
+		            <p i18n:translate="description_site_error">
+		            This site encountered an error trying to fulfill your request.
+		            The errors were:
+		            </p>
+
+		            <dl>
+		                <dt i18n:translate="label_error_type">
+		                Type
+		                </dt>
+
+		                <dd i18n:translate="" tal:content="err_type">
+		                The rendered error type
+		                </dd>
+
+		                <tal:error condition="err_message">
+		                <dt i18n:translate="label_error_message">
+		                Error Message
+		                </dt>
+
+		                <dd i18n:translate="" tal:content="err_message|nothing">
+		                The rendered error message
+		                </dd>
+		                </tal:error>
+
+		                <tal:value condition="python:test(err_value and (err_value != err_message), 1, 0)">
+		                <dt i18n:translate="label_error_value">
+		                Error Value
+		                </dt>
+
+		                <dd i18n:translate="" tal:content="err_value">
+		                The rendered error value
+		                </dd>
+		                </tal:value>
+
+		                <dt i18n:translate="label_error_time">
+		                Request made at
+		                </dt>
+
+		                <dd tal:content="here/ZopeTime">
+		                The time the error was encountered
+		                </dd>
+		            </dl>
+
+		        </div>
+</div>
+
+</body>
+</html>

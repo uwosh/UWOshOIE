@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      metal:use-macro="here/main_template/macros/master"
+      i18n:domain="plone">
+
+  <metal:block fill-slot="top_slot"
+               tal:define="dummy python:request.set('disable_border',1)" />
+
+  <body>
+    
+    <div metal:fill-slot="main"
+         tal:define="useSelf python:isStructuralFolder and not isContextDefaultPage;
+                     folder_warning python:useSelf and here.portal_type != 'Topic';">
+
+      <h1 i18n:translate="alert_really_delete">
+		Are You Sure You Want To 
+		<tal:filler tal:content="python: request.transition_title + '?'" />
+      </h1>
+
+      <ul>
+          <li tal:content="python: 'Name: ' + here.getFullName()">Name</li>
+		  <li tal:content="python: 'Program: ' + here.getProgramNameAsString()">Program Name</li>
+		  <li tal:content="python: 'Year: ' + str(here.getProgramYear())">Program Year</li>
+      </ul>
+
+      <form method="POST"
+            action="#"
+            tal:attributes="action python: here.absolute_url() + '/confirm_content_status_modify'">
+        <div class="formControls">
+
+          <input type="hidden"
+                 name="form.submitted"
+                 value="1"
+                 />
+		  <input type="hidden" name="oie_application_id" tal:attributes="value here/id" />
+		  <input type="hidden" name="transition_id" tal:attributes="value request/transition_id" />
+
+          <input class="destructive"
+                 type="submit"
+				 tal:attributes="value request/transition_description"
+                 i18n:attributes="value;"
+                 />
+          <input class="standalone"
+                 type="submit"
+                 value="Cancel"
+                 name="form.button.Cancel"
+                 i18n:attributes="value label_cancel;"
+                 />
+        </div>
+
+      </form>
+
+
+    </div>
+
+  </body>
+</html>

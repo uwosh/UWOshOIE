@@ -1,0 +1,138 @@
+.section-Members #region-content.documentContent  {
+  border:none;
+}
+
+.documentByLine {
+    margin-top:20px;
+    width:100%;
+}
+
+#UWOshOIEBasicInfo {
+    float:left;
+    width:49%;
+    height:200px;
+} 
+
+#UWOshOIEApplicationState {
+    float:right;
+    width:49%;
+    min-height:200px;/* Must set because it floating makes anything after it not display correctly */
+}
+
+#UWOshOIEApplicationHistory {
+}
+
+#UWOshOIECollapsibleSections {
+    width:100%;
+}
+
+#UWOshOIEFunkyButtons ul
+{
+    float:left;
+    padding:0;
+    margin:0;
+    list-style-type:none;
+}
+
+#UWOshOIEFunkyButtons a
+{
+    float:left;
+    width:10em;
+    text-decoration:none;
+    color:white;
+    background-color:purple;
+    padding:0.2em 0.6em;
+    border-right:1px solid white;
+    font-size:x-small;
+}
+
+#UWOshOIEFunkyButtons a:hover 
+{
+    background-color:#ff3300;
+}
+
+#UWOshOIEFunkyButtons li 
+{
+    display:inline;
+}
+
+#UWOshOIExpandCollapseAll input
+{
+    font-size:x-small;
+}
+
+
+#UWOshOIEFunkyButtons input
+{
+    width:12em;
+    text-decoration:none;
+    color:white;
+    background:purple;
+    padding:0.2em 0.6em;
+    border-right:1px solid white;
+    font-size:x-small;
+    margin:0.2em 0 0.2em 0;
+}
+
+#UWOshOIEFunkyButtons input:hover 
+{
+    background-color:#ff3300;
+}
+div.state-error{
+    border: 1px solid black;
+    padding-top: 5px;
+    margin: 10px;
+    padding: 5px;
+    padding-bottom: 30px;
+    background:#f3f3f3;
+}
+table.error{
+    width: 100%; 
+    padding: 0px; 
+    border: none; 
+    border: 1px solid #789DB3;
+}
+table.error td.left_data_in_table{
+    width: 250px;
+}
+table.error td{
+    font-size: 12px; 
+    border: none; 
+    background-color: #F4F4F4; 
+    vertical-align: middle; 
+    padding: 7px; 
+}
+table.application_view{
+    width: 100%; 
+    padding: 0px; 
+    border: none; 
+    border: 1px solid #789DB3;
+    margin-bottom:10px;
+}
+table.application_view td{
+    font-size: 12px; 
+    border: none; 
+    background-color: #F4F4F4; 
+    vertical-align: middle; 
+    padding: 9px;
+}
+table.list_workflows{
+    width: 100%; 
+    padding: 0px; 
+    border: none; 
+    border: 1px solid #789DB3;
+    margin-bottom:10px;
+}
+table.list_workflows td{
+    width: 125px;		
+    font-size: 12px; 
+    border: none; 
+    background-color: #F4F4F4; 
+    vertical-align: middle; 
+    padding: 9px;
+}
+
+dd.UWOshPortletItem, dd.UWOshPortletItem a{
+    padding:0px;
+    margin:0px;
+}

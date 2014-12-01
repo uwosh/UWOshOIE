@@ -1,0 +1,2690 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+          xmlns:tal="http://xml.zope.org/namespaces/tal"
+          xmlns:metal="http://xml.zope.org/namespaces/metal"
+          xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+          i18n:domain="plone">
+      <body>
+
+        <h1 metal:define-macro="header" 
+            tal:define="  fName here/firstName|nothing; 
+                        mName here/middleName|nothing; 
+                        lName here/lastName|nothing; 
+                        pYear here/programYear|nothing; 
+                        pSemester here/programSemester|nothing;
+                        programName here/getProgramName|nothing;
+                        pName python: programName != None and programName.Title();"
+            tal:content="string: $fName $mName $lName" >
+            [full name]
+        </h1>
+
+        <div    id="body" 
+                metal:define-macro="body"
+                tal:define="field_macro field_macro | here/widgets/field/macros/view;
+                            review_state wf_state;">
+
+<div id="UWOshOIEApplication">
+    
+    <div    class="portalMessage" 
+            tal:condition="python: review_state and review_state == 'private'">
+        Your application is not submitted yet.  You must click the "Submit app" button in the "Application State" area to submit to the OIE staff
+    </div> 
+
+<div id="UWOshOIEOverview">
+
+	<div id="UWOshOIEBasicInfo">
+    	<fieldset><legend>Basic Information</legend>
+        	<div 	class="field ArchetypesField-StringField"
+                    id="archetypes-fieldname-studentID">
+          		<label>
+					<span>
+						UW Oshkosh Student ID
+					</span>
+						:
+				</label>
+          		<span tal:content="here/studentID">
+					[studentID]
+				</span> 
+        	</div>
+        
+        	<div 	class="field ArchetypesField-StringField"
+                    id="archetypes-fieldname-email">
+          		<label>
+					<span>
+						Email Address
+					</span>
+						:
+				</label>
+          		<span 	tal:condition="here/email" 
+						tal:replace="structure string:<a href='mailto:${here/email}'>${here/email}</a>">
+					[email address]
+				</span> 
+			</div>
+          
+        	<div 	class="field ArchetypesField-StringField"
+             		id="archetypes-fieldname-programName"
+					tal:define="programName here/getProgramName|nothing;
+								pName programName/Title|nothing;">
+          		<label>
+					<span width="300px">
+						Program Name
+					</span>
+						:
+				</label>
+          		<span tal:content="pName">
+					[programName]
+          		</span>  
+			</div>
+          
+        	<div 	class="field ArchetypesField-IntegerField"
+					id="archetypes-fieldname-programYear"
+            		tal:define="pYear here/programYear|nothing;
+                        		pSem here/programSemester|nothing;">
+          		<label>
+					<span>
+						Program Semester &amp; Year 
+					</span>
+						:
+				</label>
+          		<span tal:content="string:$pSem $pYear">
+					[programSemester and programYear]
+          		</span>  
+			</div>
+    	</fieldset>
+	</div>
+
+	<div id="UWOshOIEApplicationState">
+    	<fieldset>
+			<legend>Application State</legend>
+        	<p tal:condition="review_state">
+            	<span tal:attributes="class string:state-${review_state}" size=+2>Your application state is: <span tal:content="review_state"/></span>
+        	</p>
+        	<p>
+            	<span tal:replace="python: context.get_workflow_state_description(wf_state)"/>  
+        	</p>
+        	<p>
+            	<a href="application-states-and-workflow">See process overview</a>
+        	</p>
+        	<tal:block>
+  				<div id="UWOshOIEFunkyButtons">
+            		<ul>
+<li>
+<tal:block condition="python: review_state and review_state == 'facultyReview'" define="programs python: context.getRefs(); program_title python: len(programs) > 0 and programs[0].title_or_id() or 'no program selected'">
+
+
+<form method="post" action="https://plonedev.uwosh.edu/oie/applicant-approval-form">
+<input type="hidden" name="student-name" tal:attributes="value python:context.firstName + ' ' + context.middleName + ' ' + context.lastName" />
+<input type="hidden" name="student-email-address" tal:attributes="value python:str(context.email)" />
+<input type="hidden" name="academic-and-career-plan" tal:attributes="value python:str(context.questionAcadCareerPlan)" />
+<input type="hidden" name="language-and-cultural-skills" tal:attributes="value python:str(context.questionLangCulturalSkills)" />
+<input type="hidden" name="previous-travel-experience" tal:attributes="value python:str(context.questionPrevTravel)" />
+<input type="hidden" name="work-experience" tal:attributes="value python:str(context.questionWorkExp)" />
+<input type="hidden" name="european-business-travel-seminar-only" tal:attributes="value python:str(context.questionEuroBizTravSem)" />
+<input type="hidden" name="student-exchange-and-competitive-programs-only" tal:attributes="value python:str(context.questionStuExchComp)" />
+<input type="hidden" name="student-type" tal:attributes="value python:str(context.studentType)" />
+<input type="hidden" name="name-of-other-university" tal:attributes="value python:str(context.universityEnrolled)" />
+<input type="hidden" name="expected-graduation-month-1" tal:attributes="value python:str(context.graduationMonth)" />
+<input type="hidden" name="expected-graduation-year" tal:attributes="value python:str(context.graduationYear)" />
+<input type="hidden" name="cumulative-gpa" tal:attributes="value python:str(context.cumulativeGPA)" />
+<input type="hidden" name="first-major-1" tal:attributes="value python:str(context.major1)" />
+<input type="hidden" name="second-major-1" tal:attributes="value python:str(context.major2)" />
+<input type="hidden" name="minor-1" tal:attributes="value python:str(context.minor1)" />
+<input type="hidden" name="minor-2" tal:attributes="value python:str(context.minor2)" />
+<input type="hidden" name="emphasis-licensure-1" tal:attributes="value python:str(context.emphasis1)" />
+<input type="hidden" name="emphasis-licensure-2" tal:attributes="value python:str(context.emphasis2)" />
+<input type="hidden" name="course-1-subject" tal:attributes="value python:str(context.subject1)" />
+<input type="hidden" name="course-number-1" tal:attributes="value python:str(context.course1)" />
+<input type="hidden" name="credits-1" tal:attributes="value python:str(context.credits1)" />
+<input type="hidden" name="course-2-subject" tal:attributes="value python:str(context.subject2)" />
+<input type="hidden" name="course-number-2" tal:attributes="value python:str(context.course2)" />
+<input type="hidden" name="credits-2" tal:attributes="value python:str(context.credits2)" />
+<input type="hidden" name="course-3-subject" tal:attributes="value python:str(context.subject3)" />
+<input type="hidden" name="course-number-3" tal:attributes="value python:str(context.course3)" />
+<input type="hidden" name="credits-3" tal:attributes="value python:str(context.credits3)" />
+<input type="hidden" name="course-4-subject" tal:attributes="value python:str(context.subject4)" />
+<input type="hidden" name="course-number-4" tal:attributes="value python:str(context.course4)" />
+<input type="hidden" name="credits-4" tal:attributes="value python:str(context.credits4)" />
+<input type="hidden" name="course-5-subject" tal:attributes="value python:str(context.subject5)" />
+<input type="hidden" name="course-number-5" tal:attributes="value python:str(context.course5)" />
+<input type="hidden" name="credits-5" tal:attributes="value python:str(context.credits5)" />
+<input type="hidden" name="course-6-subject" tal:attributes="value python:str(context.subject6)" />
+<input type="hidden" name="course-number-6" tal:attributes="value python:str(context.course6)" />
+<input type="hidden" name="credits-6" tal:attributes="value python:str(context.credits6)" />
+<input type="hidden" name="expectations-1" tal:attributes="value python:str(context.questionExpectations)" />
+<input type="hidden" name="this-students-g.p.a.-is" tal:attributes="value python:str(context.cumulativeGPA)" />
+<input type="hidden" name="program-semester-year" tal:attributes="value python:str(context.programSemester)" />
+<input type="hidden" name="program-year" tal:attributes="value python:str(context.programYear)" />
+<input type="hidden" name="program-name" tal:attributes="value python:str(program_title)" />
+<input type="hidden" name="student-app-url" tal:attributes="value python:str(context.absolute_url())" />
+
+
+<input type="submit" value="Populate Form Data" />
+</form>
+
+</tal:block>
+</li>
+                		<li>
+                    		<a tal:condition="is_editable" 
+							   tal:attributes="href python:context.absolute_url() + '/base_edit?last_referer=' + context.absolute_url()">
+                        		Edit application
+                    		</a>
+                		</li>
+
+                		<tal:block repeat="action wf_actions"
+									tal:define="url_for_action string:$here_url/confirm_content_status_modify">
+                    		<li tal:define="transition python: context.get_transition_information(action);
+											action_title transition/title;
+										    action_id transition/id;
+											action_description transition/description"
+								tal:condition="python: action_id != 'addComment'">
+                        		<a tal:attributes="href python: url_for_action + '?' + context.url_encode({'transition_title': action_title, 'transition_id': action_id, 'transition_description': action_description})"
+								   tal:content="action_description">
+                            		The Transition Title
+								</a>
+                    		</li>
+                		</tal:block>
+            		</ul>
+  				</div>
+        	</tal:block>
+    	</fieldset>
+	</div>
+</div>
+
+<div id="UWOshOIExpandCollapseAll">
+	<form>
+		<input type="button" onclick="expandCollapsibles();" value="Expand all sections">
+		<input type="button" onclick="collapseCollapsibles();" value="Collapse all sections">
+	</form>
+</div>
+
+<div id="UWOshOIEApplicationHistory">
+	<fieldset>
+		<legend>Comments & History</legend>
+		<div>
+			<tal:block repeat="action wf_actions">
+				<div tal:define="action_title action/title" tal:condition="python:action_title.startswith('addComment')">
+					<span class="AddComments">
+						<dl id="Addresses" class="collapsible collapsedOnLoad">
+							<dt class="collapsibleHeader">Add Comment</dt>
+							<dd class="collapsibleContent">
+								<form tal:attributes="action string:$here_url/content_status_modify" method="get">
+									<label i18n:translate="label_comments">Comment to add:</label>
+									<textarea 	id="comment"
+                                              	name="comment"
+												cols="60"
+												rows="3"
+												tabindex=""
+												tal:attributes="tabindex tabindex/next;"
+												tal:content="request/comment|nothing">
+									</textarea>
+									<input type="hidden" name="workflow_action" value="addComment" />
+									<input type="submit" value="Add comment" /> 
+								</form>     
+							</dd>
+						</dl>
+					</span>
+				</div>
+			</tal:block>
+		</div>
+		<span metal:use-macro="here/uwoshoie_review_history/macros/uwoshoie_review_history" />
+	</fieldset>
+</div>
+
+<div id="UWOshOIECollapsibleSections">
+    
+    <span class="Addresses">
+    <dl id="Addresses" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Addresses</dt>
+            <dd class="collapsibleContent">
+            
+    <fieldset><legend>Local Address</legend>
+	
+    <table>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localAddr1">
+      <label><span>Address Line 1</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localAddr1">
+      <span tal:content="here/localAddr1">[localAddr1]</span>
+      </div>
+      </td>
+    </tr>
+    
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localAddr2">
+      <label><span>Address Line 2</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localAddr2">
+      <span tal:content="here/localAddr2">[localAddr2]</span>
+    </div>
+      </td>
+    </tr>
+    <tr>
+    <td>
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localCity">
+      <label><span>City</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localCity">
+      <span tal:content="here/localCity">[localCity]</span>
+      </div>
+      </td>
+    </tr>
+    <tr>
+    
+        <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localState">
+      <label><span>State</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localState">
+      <span tal:content="here/localState">[localState]</span> 
+      </div>
+      </td>
+    </tr>
+    <tr>
+        <td>
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localZip">
+      <label><span>Zip Code</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localZip">
+      <span tal:content="here/localZip">[localZip]</span> 
+      </div>
+      </td>
+    </tr>
+    <tr>
+        <td>
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localCountry">
+      <label><span>Country</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localCountry">
+      <span tal:content="here/localCountry">[localCountry]</span> 
+      </div>
+      </td>
+    </tr>
+
+    <tr>
+        <td>
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localPhone">
+      <label><span>Telephone</span>:</label>
+              <div class="formHelp" id="localPhone_help">Please include country code (if outside US) and area code</div>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-localPhone">
+      <span tal:content="here/localPhone">[localPhone]</span> 
+      </div>
+      </td>
+    </tr>
+
+    <tr>
+        <td>
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-mobilePhone">
+      <label><span>Mobile (cell) phone</span>:</label>
+              <div class="formHelp" id="mobilePhone_help">Please include country code (if outside US) and area code</div>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-mobilePhone">
+      <span tal:content="here/mobilePhone|nothing">[mobilePhone]</span> i
+      </div>
+      </td>
+    </tr>
+
+    </table>  
+    </fieldset>
+    
+    <br>
+    
+    <fieldset><legend>Home Address</legend>
+    <table>
+      
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeAddr1">
+      <label><span>Address Line 1</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeAddr1">
+      <span tal:content="here/homeAddr1">[homeAddr1]</span>
+      </div>
+      </td>
+      </tr>
+      <tr>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeAddr2">
+      <label><span>Address Line 2</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeAddr2">
+      <span tal:content="here/homeAddr2">[homeAddr2]</span>
+    </div>
+      </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeCity">
+      <label><span>City</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeCity">
+      <span tal:content="here/homeCity">[homeCity]</span>
+      </div>
+      </td>
+      </tr>
+    <tr>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeState">
+      <label><span>State</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeState">
+      <span tal:content="here/homeState">[homeState]</span>
+      </div>
+      </td>
+      </tr>
+    <tr>  
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeZip">
+      <label><span>Zip Code</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeZip">
+      <span tal:content="here/homeZip">[homeZip]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeCountry">
+      <label><span>Country</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homeCountry">
+      <span tal:content="here/homeCountry">[homeCountry]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homePhone">
+      <label><span>Telephone</span>:</label>
+              <div class="formHelp" id="homePhone_help">Please include country code (if outside US) and area code</div>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-homePhone">
+      <span tal:content="here/homePhone">[homePhone]</span> 
+      </div>
+      </td>
+      </tr>
+    </table>
+    </fieldset>  
+    
+    </dd>
+    </dl>
+    </span>
+    
+      
+                     
+    
+    
+    
+    <span class="Demographics">
+    <dl id="Demographics" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Demographics</dt>
+            <dd class="collapsibleContent">
+    
+    <div class="citizenship">                 
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-citizenship">
+      <label><span>Citizenship</span>:</label>
+      <span tal:content="here/citizenship">[citizenship]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-citizenshipOther">
+      <label><span>Enter country of citizenship if you selected Other</span>:</label>
+      <span tal:content="here/citizenshipOther">[citizenshipOther]</span><br />
+    </div>
+    </div>
+    
+    <div class="stateResidency">
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-stateResidency">
+      <label><span>State Residency</span>:</label>
+      <span tal:content="here/stateResidency">[stateResidency]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-stateResidencyOther">
+      <label><span>Enter state of residency if you selected Other</span>:</label>
+      <span tal:content="here/stateResidencyOther">[stateResidencyOther]</span> <br />
+    </div>
+    </div>
+    
+    <div class="birthday">
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-dateOfBirth_year">
+      <label><span>Birthday (Year, YYYY)</span>:</label>
+      <span tal:content="here/dateOfBirth_year|nothing">[dateOfBirth]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-dateOfBirth_month">
+      <label><span>Birthday (Month)</span>:</label>
+      <span tal:content="here/dateOfBirth_month">[dateOfBirth]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-dateOfBirth_day">
+      <label><span>Birthday (Day)</span>:</label>
+      <span tal:content="here/dateOfBirth_day">[dateOfBirth]</span><br />
+    </div>
+    </div>
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-placeOfBirth">
+      <label><span>Place of Birth</span>:</label>
+              <div class="formHelp" id="placeOfBirth_help">Enter city, state, and country</div>
+      <span tal:content="here/placeOfBirth">[placeOfBirth]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-gender">
+      <label><span>Gender</span>:</label>
+      <span tal:content="here/gender">[gender]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-marriageStatus">
+      <label><span>Marital Status</span>:</label>
+      <span tal:content="here/marriageStatus">[marriageStatus]</span><br />
+    </div>
+    
+    <div class="ethnicity">
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-ethnicity">
+      <label><span>Ethnicity</span>:</label>
+      <span tal:content="here/ethnicity">[ethnicity]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-ethnicityOther">
+      <label><span>Enter ethnicity if you selected Other</span>:</label>
+      <span tal:content="here/ethnicityOther">[ethnicityOther]</span><br />
+    </div>
+    </div>
+    
+    </dd>
+    </dl>
+    </span>
+    
+    
+    
+    
+    <span class="Passport">
+    <dl id="Passport" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Passport</dt>
+            <dd class="collapsibleContent">
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-passportName">
+      <label><span>Full Name</span>:</label>
+              <div class="formHelp" id="passportName_help">Enter your full name EXACTLY as it appears on your passport or passport application</div>
+      <span tal:content="here/passportName">[passportName]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-passportNumber">
+      <label><span>Passport Number</span>:</label>
+      <span tal:content="here/passportNumber">[passportNumber]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-passportIssueOffice">
+      <label><span>Passport Issuing Office</span>:</label>
+              <div class="formHelp"
+                   id="passportIssueOffice_help">E.g. New Orleans or National Passport Agency</div>
+      <span tal:content="here/passportIssueOffice">[passportIssueOffice]</span><br />
+    </div>
+    
+    <div class="passportExpiryDate">
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-passportExpDate_year">
+      <label><span>Passport Expiry Year</span>:</label>
+      <span tal:content="here/passportExpDate_year|nothing">[passportExpDate]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-passportExpDate_month">
+      <label><span>Passport Expiry Month</span>:</label>
+      <span tal:content="here/passportExpDate_month">[passportExpDate]</span><br />
+    </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-passportExpDate_day">
+      <label><span>Passport Expiry Day</span>:</label>
+      <span tal:content="here/passportExpDate_day">[passportExpDate]</span><br />
+    </div>
+    </div>
+    
+    </dd>
+    </dl>
+    </span>
+    
+    
+    
+    <span class="Additional_Questions">
+    <dl id="Additional_Questions" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Additional Questions</dt>
+            <dd class="collapsibleContent">
+    
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-questionAcadCareerPlan">
+      <label><span>Academic and Career Plan</span>:</label>
+    <div class="formHelp"
+                   id="questionAcadCareerPlan_help">a) Briefly, what are
+                     your short- and long-term academic and career
+                     goals?<br>  b) Why would you like to participate in
+                     this program? <br> c) What do you expect to gain from your experience?</div>
+      <span tal:content="here/questionAcadCareerPlan">[questionAcadCareerPlan]<br />
+      </span> </div>
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-questionLangCulturalSkills">
+      <label><span>Language and Cultural Skills</span>:</label>
+       <div class="formHelp"
+                   id="questionLangCulturalSkills_help">a) Have you
+                     studied a foreign language? If so, what is your level
+                     of fluency?<br>  b) Have you completed any
+                     University-level courses on the culture or history of
+                     your destination? If so, explain.<br> c) Have you
+                     ever been immersed in a language and/or culture
+                     abroad? If so, please explain.<br> d) Do you plan to use a foreign language in a professional setting? If yes, please explain.</div>
+      <span tal:content="here/questionLangCulturalSkills">[questionLangCulturalSkills]</span><br />
+    </div>
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-questionPrevTravel">
+      <label><span>Previous Travel Experience</span>:</label>
+         <div class="formHelp" id="questionPrevTravel_help">Have you traveled abroad? If so, list the places to which you have traveled along with the dates and purpose.</div>
+               <span tal:content="here/questionPrevTravel">[questionPrevTravel]<br />
+      </span> </div>
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-questionWorkExp">
+      <label><span>Work Experience</span>:</label>
+      <div class="formHelp" id="questionWorkExp_help">a) Who is your
+                     current employer?<br>  b) If relevant to your study
+                     abroad program, list and describe your
+                     responsibilities from current and previous
+                     jobs.</div>
+    		 <span tal:content="here/questionWorkExp">[questionWorkExp]<br />
+      </span> </div>
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-questionEuroBizTravSem">
+      <label><span>European Business Travel Seminar Only</span>:</label>
+      <div class="formHelp"
+                   id="questionEuroBizTravSem_help">Include the name of the company(ies) you are currently working for and your title(s).</div>
+      <span tal:content="here/questionEuroBizTravSem">[questionEuroBizTravSem]<br />
+      </span> </div>
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-questionStuExchComp">
+      <label><span>Student Exchange and Competitive Programs Only</span>:</label>
+       <div class="formHelp"
+                   id="questionStuExchComp_help">Add anything else you think we should consider when reviewing your application.</div>
+      <span tal:content="here/questionStuExchComp">[questionStuExchComp]<br />
+      </span> </div>
+    
+    </dd>
+    </dl>
+    </span>
+      
+    
+    
+    <span class="Medical">
+    <dl id="Medical" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Medical</dt>
+            <dd class="collapsibleContent">
+      
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-doctorLastname">
+      <label><span>Last Name of your Family Doctor</span>:</label>
+      <span tal:content="here/doctorLastname">[doctorLastname]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-doctorFirstname">
+      <label><span>First Name of your Family Doctor</span>:</label>
+      <span tal:content="here/doctorFirstname">[doctorFirstname]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-doctorPhone">
+      <label><span>Doctor's Phone Number</span>:</label>
+              <div class="formHelp" id="doctorPhone_help">Please include country code (if outside US) and area code</div>
+      <span tal:content="here/doctorPhone">[doctorPhone]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalInsuranceCompany">
+      <label><span>Name of Insurance Company</span>:</label>
+      <span tal:content="here/medicalInsuranceCompany">[medicalInsuranceCompany]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalPolicyHolder">
+      <label><span>Name of Policy Holder</span>:</label>
+      <span tal:content="here/medicalPolicyHolder">[medicalPolicyHolder]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalPolicyGroupNumber">
+      <label><span>Policy / Group Number</span>:</label>
+      <span tal:content="here/medicalPolicyGroupNumber">[medicalPolicyGroupNumber]<br />
+      </span> </div>
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-foodAllergies">
+      <label><span>List any allergies (food, pet, etc.)</span>:</label>
+      <span tal:content="here/foodAllergies">[foodAllergies]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-hasDifficultyWalking">
+      <label><span>Do you have a condition which would make it difficult to walk long distances?</span>:</label>
+      <span tal:content="here/hasDifficultyWalking">[hasDifficultyWalking]<br />
+      </span> </div>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-maxWalkingDistance">
+      <label><span>If so, what is the maximum number of minutes you can walk?</span>:</label>
+      <span tal:content="here/maxWalkingDistance|nothing">[maxWalkingDistance]<br />
+      </span> </div>
+    </dd>
+    </dl>
+    </span>
+    
+    <span class="Medical II">
+    <dl id="Medical II" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Medical II</dt>
+            <dd class="collapsibleContent">
+      
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalReadStatement">
+      <div class="formHelp" id="medicalReadStatement_help">
+	Pre-existing medical and mental health conditions are often intensified by travel to or living in a foreign environment.  Before committing to a study abroad program, consider how your new environment may affect your personal health both physically and mentally.  For example, your new environment may introduce you to new diseases, such as malaria or yellow fever, or new stresses which may cause additional complications for a person with a preexisting condition.<br>
+	<br>
+	The OIE strongly recommends that you have a physical, talk with a medical provider about any preexisting conditions and recommended and/or required immunizations, talk with a psychiatrist or counselor about any preexisting conditions and take care of any dental work before departure.<br>
+	<br>
+	If you choose not to complete this section before program acceptance, you must forward information related to the following to the OIE within one week of the application deadline for your program.  Failure to disclose medical or mental health conditions will make it extremely difficult for staff at UW Oshkosh and abroad to assist you in an emergency and may cause health professionals abroad to take actions which could lead to serious medical consequences, including death.<br>
+	<br>
+	NOTE ON MEDICATIONS: You are responsible for ensuring that your medications can be carried into the foreign country.  If your medical status changes after completing this application, you must inform the OIE.
+      </div>
+      <label><span>I have read the statement above and understand.</span>:</label>
+      <span tal:content="here/medicalReadStatement|nothing">[medicalReadStatement]<br />
+      </span>
+    </div>
+
+    </dd>
+    </dl>
+    </span>
+    
+    
+    <span class="Medical III">
+    <dl id="Medical III" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Medical III</dt>
+            <dd class="collapsibleContent">
+                     
+<!--     <div class="field ArchetypesField-TextField" -->
+<!--                      id="archetypes-fieldname-medicalHealthProblems"> -->
+<!--       <div class="formHelp" id="medicalHealthProblems_help"> -->
+<!-- 	Complete this section now or by the Friday following the application deadline.  Write ‘n/a’ in blanks where appropriate<br> -->
+<!-- 	<br> -->
+<!-- 	List and describe any recent (within the past five years) or continuing health problems, including physical disabilities or medical conditions; learning disabilities; drug, plant, food, animal, or insect sting allergies (include information pertaining to reactions); and/or surgeries that should be brought to the attention of the lead faculty members, liaison abroad and/or host family abroad.  Address the following as appropriate:<br> -->
+<!-- 	<br> -->
+<!-- 	•	Are you taking/have you ever taken medication related to your physical health?  If so, list the medications taken over the past year;  are you stable on this medication?<br> -->
+<!-- 	•	Are you currently under the care of a doctor or other health care professional?  If yes, for what condition?<br> -->
+<!-- 	•	Is your current physician willing to prescribe enough medication to last throughout your planned program abroad?<br> -->
+<!-- 	•	Is there any additional information related to your physical health which may be helpful for program organizers, liaisons and host families to know? -->
+<!--       </div> -->
+<!--       <label><span>Your health</span>:</label> -->
+<!--       <span tal:content="here/medicalHealthProblems|nothing">[medicalHealthProblems]<br /> -->
+<!--       </span> -->
+<!--     </div> -->
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalHealthProblems">
+      <div class="formHelp" id="medicalHealthProblems_help">
+	Complete this section now or by the Friday following the application deadline.  Write 'n/a' in blanks where appropriate.
+      </div>
+      <label><span>List and describe any recent (within the past five years) or continuing health problems, including physical disabilities or medical conditions; learning disabilities; drug, plant, food, animal, or insect sting allergies (include information pertaining to reactions); and/or surgeries that should be brought to the attention of the lead faculty members, liaison abroad and/or host family abroad.  Address the following as appropriate:</span>:</label>
+      <span tal:content="here/medicalHealthProblems|nothing">[medicalHealthProblems]<br />
+      </span>
+    </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalHealthProblems_takenMedication">
+      <div class="formHelp" id="medicalHealthProblems_takenMedication_help"> </div>
+      <label><span>Are you taking/have you ever taken medication related to your physical health?</span>:</label>
+      <span tal:content="here/medicalHealthProblems_takenMedication|nothing">[medicalHealthProblems_takenMedication]<br />
+      </span>
+    </div>
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalHealthProblems_medications">
+      <div class="formHelp" id="medicalHealthProblems_medications_help"> </div>
+      <label><span>If so, list the medications you have taken over the past year</span>:</label>
+      <span tal:content="here/medicalHealthProblems_medications|nothing">[medicalHealthProblems_medications]<br />
+      </span>
+    </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalHealthProblems_stable">
+      <div class="formHelp" id="medicalHealthProblems_stable_help"> </div>
+      <label><span>Are you stable on this medication?</span>:</label>
+      <span tal:content="here/medicalHealthProblems_stable|nothing">[medicalHealthProblems_stable]<br />
+      </span>
+    </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalHealthProblems_underCare">
+      <div class="formHelp" id="medicalHealthProblems_underCare_help"> </div>
+      <label><span>Are you currently under the care of a doctor or other health care professional?</span>:</label>
+      <span tal:content="here/medicalHealthProblems_underCare|nothing">[medicalHealthProblems_underCare]<br />
+      </span>
+    </div>
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalHealthProblems_whatCondition">
+      <div class="formHelp" id="medicalHealthProblems_whatCondition_help"> </div>
+      <label><span>If so, for what condition?</span>:</label>
+      <span tal:content="here/medicalHealthProblems_whatCondition|nothing">[medicalHealthProblems_whatCondition]<br />
+      </span>
+    </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalHealthProblems_willingToPrescribe">
+      <div class="formHelp" id="medicalHealthProblems_willingToPrescribe_help"> </div>
+      <label><span>Is your current physician willing to prescribe enough medication to last throughout your planned program abroad?</span>:</label>
+      <span tal:content="here/medicalHealthProblems_willingToPrescribe|nothing">[medicalHealthProblems_willingToPrescribe]<br />
+      </span>
+    </div>
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalHealthProblems_additionalInfo">
+      <div class="formHelp" id="medicalHealthProblems_additionalInfo_help"> </div>
+      <label><span>Is there any additional information related to your physical health which may be helpful for program organizers, liaisons and host families to know?</span>:</label>
+      <span tal:content="here/medicalHealthProblems_additionalInfo|nothing">[medicalHealthProblems_additionalInfo]<br />
+      </span>
+    </div>
+
+
+<!--     <div class="field ArchetypesField-TextField" -->
+<!--                      id="archetypes-fieldname-medicalMentalProblems"> -->
+<!--       <div class="formHelp" id="medicalMentalProblems_help"> -->
+<!-- 	Complete this section now or by the Friday following the application deadline.  Write ‘n/a’ in blanks where appropriate<br> -->
+<!-- 	<br> -->
+<!-- 	List and describe any recent or continuing mental health problems, including anxiety, depression, bipolar disorder, substance abuse (alcohol or drugs), eating disorders (anorexia/bulimia), etc. that should be brought to the attention of the lead faculty members, liaison abroad and/or host family abroad.  Include the following information: diagnosis, dates of treatment, names & locations of treating professionals, and recovery status.  Address the following as appropriate:<br> -->
+<!-- 	<br> -->
+<!-- 	•	Are you taking/have you ever taken medication related to your mental health?  If so, list the medications taken over the past year.  What is the current dose?  Are you stable on this medication?<br> -->
+<!-- 	•	Are you currently or have you ever been under the care of a psychiatrist or other medical provider, substance abuse counselor or other mental health professional?  If yes, for what condition?<br> -->
+<!-- 	•	Is your current medical provider willing to prescribe enough medication to last for the duration of your planned program abroad?<br> -->
+<!-- 	•	Is there any additional information related to your mental health which may be helpful for program organizers, liaisons and host families to know? -->
+<!--       </div> -->
+<!--       <label><span>Your mental health</span>:</label> -->
+<!--       <span tal:content="here/medicalMentalProblems|nothing">[medicalMentalProblems]<br /> -->
+<!--       </span>  -->
+<!--     </div> -->
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalMentalProblems">
+      <div class="formHelp" id="medicalMentalProblems_help">
+	Complete this section now or by the Friday following the application deadline.  Write 'n/a' in blanks where appropriate.
+      </div>
+      <label><span>List and describe any recent or continuing mental health problems, including anxiety, depression, bipolar disorder, substance abuse (alcohol or drugs), eating disorders (anorexia/bulimia), etc. that should be brought to the attention of the lead faculty members, liaison abroad and/or host family abroad.  Include the following information: diagnosis, dates of treatment, names & locations of treating professionals, and recovery status.</span>:</label>
+      <span tal:content="here/medicalMentalProblems|nothing">[medicalMentalProblems]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalMentalProblems_takenMedication">
+      <div class="formHelp" id="medicalMentalProblems_takenMedication_help"> </div>
+      <label><span>Are you taking/have you ever taken medication related to your mental health?</span>:</label>
+      <span tal:content="here/medicalMentalProblems_takenMedication|nothing">[medicalMentalProblems_takenMedication]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalMentalProblems_medications">
+      <div class="formHelp" id="medicalMentalProblems_medications_help"> </div>
+      <label><span>If so, list the medications taken over the past year.</span>:</label>
+      <span tal:content="here/medicalMentalProblems_medications|nothing">[medicalMentalProblems_medications]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalMentalProblems_currentDose">
+      <div class="formHelp" id="medicalMentalProblems_currentDose_help"> </div>
+      <label><span>What is the current dose?</span>:</label>
+      <span tal:content="here/medicalMentalProblems_currentDose|nothing">[medicalMentalProblems_currentDose]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalMentalProblems_stable">
+      <div class="formHelp" id="medicalMentalProblems_stable_help"> </div>
+      <label><span>Are you stable on this medication?</span>:</label>
+      <span tal:content="here/medicalMentalProblems_stable|nothing">[medicalMentalProblems_stable]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalMentalProblems_underCare">
+      <div class="formHelp" id="medicalMentalProblems_underCare_help"> </div>
+      <label><span>Are you currently or have you ever been under the care of a psychiatrist or other medical provider, substance abuse counselor or other mental health professional?</span>:</label>
+      <span tal:content="here/medicalMentalProblems_underCare|nothing">[medicalMentalProblems_underCare]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalMentalProblems_condition">
+      <div class="formHelp" id="medicalMentalProblems_condition_help"> </div>
+      <label><span>If yes, for what condition?</span>:</label>
+      <span tal:content="here/medicalMentalProblems_condition|nothing">[medicalMentalProblems_condition]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-medicalMentalProblems_enoughMedication">
+      <div class="formHelp" id="medicalMentalProblems_enoughMedication_help"> </div>
+      <label><span>Is your current medical provider willing to prescribe enough medication to last for the duration of your planned program abroad?</span>:</label>
+      <span tal:content="here/medicalMentalProblems_enoughMedication|nothing">[medicalMentalProblems_enoughMedication]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalMentalProblems_additionalInfo">
+      <div class="formHelp" id="medicalMentalProblems_additionalInfo_help"> </div>
+      <label><span>Is there any additional information related to your mental health which may be helpful for program organizers, liaisons and host families to know?</span>:</label>
+      <span tal:content="here/medicalMentalProblems_additionalInfo|nothing">[medicalMentalProblems_additionalInfo]<br />
+      </span> 
+    </div>
+
+<!--     <div class="field ArchetypesField-TextField" -->
+<!--                      id="archetypes-fieldname-medicalRegistered"> -->
+<!--       <div class="formHelp" id="medicalRegistered_help"> -->
+<!-- 	Are you currently registered with the University of Wisconsin Oshkosh (with offices such as the Dean of Students office or Project Success) or with your university for medical or mental-health related accommodations?<br> -->
+<!-- 	<br> -->
+<!-- 	•	If so, with which office have you registered?<br> -->
+<!-- 	•	What accommodations have been authorized for you? -->
+<!--       </div> -->
+<!--       <label><span>Registered for health accommodations?</span>:</label> -->
+<!--       <span tal:content="here/medicalRegistered|nothing">[medicalRegistered]<br /> -->
+<!--       </span>  -->
+<!--     </div> -->
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalRegistered">
+      <div class="formHelp" id="medicalRegistered_help"> </div>
+      <label><span>Are you currently registered with the University of Wisconsin Oshkosh (with offices such as the Dean of Students office or Project Success) or with your university for medical or mental-health related accommodations?</span>:</label>
+      <span tal:content="here/medicalRegistered|nothing">[medicalRegistered]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalRegistered_office">
+      <div class="formHelp" id="medicalRegistered_office_help"> </div>
+      <label><span>If so, with which office have you registered?</span>:</label>
+      <span tal:content="here/medicalRegistered_office|nothing">[medicalRegistered_office]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-medicalRegistered_accommodations">
+      <div class="formHelp" id="medicalRegistered_accommodations_help"> </div>
+      <label><span>What accommodations have been authorized for you?</span>:</label>
+      <span tal:content="here/medicalRegistered_accommodations|nothing">[medicalRegistered_accommodations]<br />
+      </span> 
+    </div>
+
+    <div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-medicalAccessOK">
+      <label><span>I understand and agree that this information will be accessed by the following people: faculty leader(s) (for faculty-led programs), exchange liaison(s) abroad (for student exchange programs), program organizers outside of UW Oshkosh, my host family, staff in the OIE, and staff in the Dean of Students Office.</span>:</label>
+      <span tal:content="here/medicalAccessOK|nothing">[medicalAccessOK]<br />
+      </span>
+    </div>
+
+    </dd>
+    </dl>
+    </span>
+    
+    
+                     
+    <span class="Preferences">
+    <dl id="Preferences" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Preferences</dt>
+            <dd class="collapsibleContent">
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-smokingPreferred">
+      <label><span>Smoking Preference</span>:</label>
+      <span tal:content="here/smokingPreferred">[smokingPreferred]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-isVegetarian">
+      <label><span>Are you vegetarian?</span>:</label>
+      <span tal:content="here/isVegetarian">[isVegetarian]<br />
+      </span> </div>
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-additionalNeeds">
+      <label><span>Is there anything else your host families or the OIE should know about your accommodation needs?</span>:</label>
+      <span tal:content="here/additionalNeeds">[additionalNeeds]<br />
+      </span> </div>
+    </dd>
+    </dl>
+    </span>
+      
+    
+    
+    <span class="Emergency_Contacts">
+    <dl id="Emergency_Contacts" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Emergency Contacts</dt>
+            <dd class="collapsibleContent">
+    <fieldset><legend>Emergency Contact #1</legend> 
+    <table>
+    <tr>
+    <td> 
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1name">
+      <label><span>Name</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1name">
+      <span tal:content="here/emerg1name">[emerg1name]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1addr1">
+      <label><span>Address Line 1</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1addr1">
+      <span tal:content="here/emerg1addr1">[emerg1addr1]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1addr2">
+      <label><span>Address Line 2</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1addr2">
+      <span tal:content="here/emerg1addr2">[emerg1addr2]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1city">
+      <label><span>City</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1city">
+      <span tal:content="here/emerg1city">[emerg1city]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1state">
+      <label><span>State</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1state">
+      <span tal:content="here/emerg1state">[emerg1state]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1zip">
+      <label><span>Zip Code</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1zip">
+      <span tal:content="here/emerg1zip">[emerg1zip]</span>
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1country">
+      <label><span>Country</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1country">
+      <span tal:content="here/emerg1country">[emerg1country]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1homePhone">
+      <label><span>Home Phone</span>:</label>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1homePhone">
+      <span tal:content="here/emerg1homePhone">[emerg1homePhone]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1workPhone">
+      <label><span>Work Phone</span>:</label>
+              <div class="formHelp" id="emerg1workPhone_help">Strongly recommended.  Please include country code (if outside US) and area code</div>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1workPhone">
+      <span tal:content="here/emerg1workPhone">[emerg1workPhone]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1mobilePhone">
+      <label><span>Mobile Phone</span>:</label>
+              <div class="formHelp" id="emerg1mobilePhone_help">Strongly recommended.  Please include country code (if outside US) and area code</div>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1mobilePhone">
+      <span tal:content="here/emerg1mobilePhone">[emerg1mobilePhone]</span> 
+      </div>
+      </td>
+      </tr>
+    <tr>
+    <td>  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1email">
+      <label><span>Email</span>:</label>
+              <div class="formHelp" id="emerg1email_help">Strongly recommended</div>
+    </div>
+      </td>
+      <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg1email">
+      <span tal:content="here/emerg1email">[emerg1email]</span> 
+      </div>
+      </td>
+      </tr>
+    </table>  
+    </fieldset>
+    
+    <br>
+    
+    <fieldset><legend>Emergency Contact #2</legend>    
+    <table>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2name">
+      <label><span>Name</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2name">
+      <span tal:content="here/emerg2name">[emerg2name]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2addr1">
+      <label><span>Address Line 1</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2addr1">
+      <span tal:content="here/emerg2addr1">[emerg2addr1]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2addr2">
+      <label><span>Address Line 2</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2addr2">
+      <span tal:content="here/emerg2addr2">[emerg2addr2]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2city">
+      <label><span>City</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2city">
+      <span tal:content="here/emerg2city">[emerg2city]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2state">
+      <label><span>State</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2state">
+      <span tal:content="here/emerg2state">[emerg2state]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2zip">
+      <label><span>Zip Code</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2zip">
+      <span tal:content="here/emerg2zip">[emerg2zip]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2country">
+      <label><span>Country</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2country">
+      <span tal:content="here/emerg2country">[emerg2country]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2homePhone">
+      <label><span>Home Phone</span>:</label>
+              <div class="formHelp" id="emerg2homePhone_help">Please include country code (if outside US) and area code</div>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2homePhone">
+      <span tal:content="here/emerg2homePhone">[emerg2homePhone]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2workPhone">
+      <label><span>Work Phone</span>:</label>
+              <div class="formHelp" id="emerg2workPhone_help">Please include country code (if outside US) and area code</div>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2workPhone">
+      <span tal:content="here/emerg2workPhone">[emerg2workPhone]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2mobilePhone">
+      <label><span>Mobile Phone</span>:</label>
+              <div class="formHelp" id="emerg2mobilePhone_help">Please include country code (if outside US) and area code</div>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2mobilePhone">
+      <span tal:content="here/emerg2mobilePhone">[emerg2mobilePhone]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2email">
+      <label><span>Email</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg2email">
+      <span tal:content="here/emerg2email">[emerg2email]</span> 
+    </div>
+    </td>
+    </tr>
+    </table>
+    </fieldset>
+    
+    <br>
+    
+    <fieldset><legend>Emergency Contact #3</legend>    
+    <table>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3name">
+      <label><span>Name</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3name">
+      <span tal:content="here/emerg3name">[emerg3name]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3addr1">
+      <label><span>Address Line 1</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3addr1">
+      <span tal:content="here/emerg3addr1">[emerg3addr1]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3addr2">
+      <label><span>Address Line 2</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3addr2">
+      <span tal:content="here/emerg3addr2">[emerg3addr2]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3city">
+      <label><span>City</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3city">
+      <span tal:content="here/emerg3city">[emerg3city]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3state">
+      <label><span>State</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3state">
+      <span tal:content="here/emerg3state">[emerg3state]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3zip">
+      <label><span>Zip Code</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3zip">
+      <span tal:content="here/emerg3zip">[emerg3zip]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3country">
+      <label><span>Country</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3country">
+      <span tal:content="here/emerg3country">[emerg3country]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3homePhone">
+      <label><span>Home Phone</span>:</label>
+              <div class="formHelp" id="emerg3homePhone_help">Please include country code (if outside US) and area code</div>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3homePhone">
+      <span tal:content="here/emerg3homePhone">[emerg3homePhone]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3workPhone">
+      <label><span>Work Phone</span>:</label>
+              <div class="formHelp" id="emerg3workPhone_help">Please include country code (if outside US) and area code</div>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3workPhone">
+      <span tal:content="here/emerg3workPhone">[emerg3workPhone]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3mobilePhone">
+      <label><span>Mobile Phone</span>:</label>
+              <div class="formHelp" id="emerg3mobilePhone_help">Please include country code (if outside US) and area code</div>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3mobilePhone">
+      <span tal:content="here/emerg3mobilePhone">[emerg3mobilePhone]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3email">
+      <label><span>Email</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emerg3email">
+      <span tal:content="here/emerg3email">[emerg3email]</span> 
+    </div>
+    </td>
+    </tr>
+    </table>
+    </fieldset>
+    </dd>
+    </dl>
+    </span>
+    
+      
+    
+    
+    <span class="Education">
+    <dl id="Education" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Education</dt>
+            <dd class="collapsibleContent">
+      
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-studentType">
+      <label><span>Student Type</span>:</label>
+      <span tal:content="here/studentType">[studentType]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-universityEnrolled">
+      <label><span>Name of other university</span>:</label>
+       <div class="formHelp" id="universityEnrolled_help">No abbreviations please</div>
+      <span tal:content="here/universityEnrolled">[universityEnrolled]<br />
+      </span> </div>
+    
+    <div class="expectedGraduation">  
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-graduationMonth">
+      <label><span>Expected Graduation Month</span>:</label>
+      <span tal:content="here/graduationMonth">[graduationMonth]<br />
+      </span> </div>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-graduationYear">
+      <label><span>Expected Graduation Year</span>:</label>
+       <div class="formHelp" id="graduationYear_help">YYYY</div>
+      <span tal:content="here/graduationYear|nothing">[graduationYear]<br />
+      </span> </div>
+    </div>
+      
+    <div class="field ArchetypesField-FloatField"
+                     id="archetypes-fieldname-cumulativeGPA">
+      <label><span>Cumulative GPA</span>:</label>
+              <div class="formHelp" id="cumulativeGPA_help">out of 4.0</div>
+      <span tal:content="here/cumulativeGPA|nothing">[cumulativeGPA]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-major1">
+      <label><span>First Major</span>:</label>
+      <span tal:content="here/major1">[major1]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-major2">
+      <label><span>Second Major</span>:</label>
+      <span tal:content="here/major2">[major2]<br />
+      </span> </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-minor1">
+      <label><span>Minor 1</span>:</label>
+      <span tal:content="here/minor1|here/minor|nothing">[minor1]<br />
+      </span> </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-minor2">
+      <label><span>Minor 2</span>:</label>
+      <span tal:content="here/minor2|nothing">[minor2]<br />
+      </span> </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emphasis1">
+      <label><span>Emphasis/Licensure 1</span>:</label>
+      <span tal:content="here/emphasis1|here/emphasis|nothing">[emphasis1]<br />
+      </span> </div>
+
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-emphasis2">
+      <label><span>Emphasis/Licensure 2</span>:</label>
+      <span tal:content="here/emphasis2|nothing">[emphasis2]<br />
+      </span> </div>
+
+    </dd>
+    </dl>
+    </span>
+      
+    
+    
+    <span class="Transportation">
+    <dl id="Transportation" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Transportation</dt>
+            <dd class="collapsibleContent">
+      
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-willTakeBus">
+      <label><span>Transportation: Bus</span>:</label>
+              <div class="formHelp" id="willTakeBus_help">Please note: while a group bus is an option for most programs, not all programs offer this option.</div>
+      <span tal:content="here/willTakeBus">[willTakeBus]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-willFlyWithGroup">
+      <label><span>Transportation: Flights</span>:</label>
+      <span tal:content="here/willFlyWithGroup">[willFlyWithGroup]<br />
+      </span> </div>
+    <div class="field ArchetypesField-DateTimeField"
+                     id="archetypes-fieldname-departureDate">
+      <label><span>Planned Departure Date</span>:</label>
+              <div class="formHelp" id="departureDate_help">Specify if you are deviating from the group itinerary.</div>
+      <span tal:content="here/departureDate|nothing">[departureDate]<br />
+      </span> </div>
+    <div class="field ArchetypesField-DateTimeField"
+                     id="archetypes-fieldname-returnDate">
+      <label><span>Planned Return Date</span>:</label>
+              <div class="formHelp" id="returnDate_help">Specify if you are deviating from the group itinerary.</div>
+      <span tal:content="here/returnDate|nothing">[returnDate]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-agreeToCosts">
+      <label><span>Faculty-led Programs: I understand that if I deviate, I will still be responsible for the entire program cost, regardless of whether I participate in all events or make use of all services. I agree</span>:</label>
+              <div class="formHelp" id="agreeToCosts_help">Enter your initials</div>
+      <span tal:content="here/agreeToCosts">[agreeToCosts]<br />
+      </span> </div>
+    </dd>
+    </dl>
+    </span>
+      
+    
+    
+    <span class="Orientation">
+    <dl id="Orientation" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Orientation</dt>
+            <dd class="collapsibleContent">
+    <div class="orientationSession1">  
+    <div class="field ArchetypesField-DateTimeField"
+                     id="archetypes-fieldname-orientationDate1">
+      <label><span>I will attend the family orientation on</span>:</label>
+              <div class="formHelp" id="orientationDate1_help">Enter one date and time for the four-hour session, or enter two dates and times for the two-hour sessions</div>
+      <span tal:content="here/orientationDate1|nothing">[orientationDate1]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-orientationHours1">
+      <label><span>Orientation Session 1 hours</span>:</label>
+      <span tal:content="here/orientationHours1">[orientationHours1]<br />
+      </span> </div>
+    </div>
+    
+    <div class="orientationSession2">  
+    <div class="field ArchetypesField-DateTimeField"
+                     id="archetypes-fieldname-orientationDate2">
+      <label><span>Orientation Session 2 Date</span>:</label>
+              <div class="formHelp" id="orientationDate2_help">if applicable</div>
+      <span tal:content="here/orientationDate2|nothing">[orientationDate2]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-orientationHours2">
+      <label><span>Orientation Session 2 hours</span>:</label>
+              <div class="formHelp" id="orientationHours2_help">if applicable</div>
+      <span tal:content="here/orientationHours2">[orientationHours2]<br />
+      </span> </div>
+    </div>
+      
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-numberOfGuests">
+      <label><span>The following number of people will attend with me</span>:</label>
+      <span tal:content="here/numberOfGuests|nothing">[numberOfGuests]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-orientationConflict">
+      <label><span>Do you have a conflict with any of the other pre-travel academic and/or orientation sessions?</span>:</label>
+      <span tal:content="here/orientationConflict">[orientationConflict]<br />
+      </span> </div>
+    <div class="field ArchetypesField-DateTimeField"
+                     id="archetypes-fieldname-conflictDate">
+      <label><span>Date of your conflict</span>:</label>
+              <div class="formHelp" id="conflictDate_help">if you selected Yes above</div>
+      <span tal:content="here/conflictDate|nothing">[conflictDate]<br />
+      </span> </div>
+    </dd>
+    </dl>
+    </span>
+      
+    
+    <span class="Courses">
+    <dl id="Courses" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Courses</dt>
+            <dd class="collapsibleContent">
+    
+    <fieldset><legend>Course #1</legend>    
+    <table>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject1">
+      <label><span>Subject</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject1">
+      <span tal:content="here/subject1">[subject1]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course1">
+      <label><span>Course Number</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course1">
+      <span tal:content="here/course1">[course1]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits1">
+      <label><span>Credits</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits1">
+      <span tal:content="here/credits1|nothing">[credits1]</span> 
+    </div>
+    </td>
+    </tr>
+    </table>
+    </fieldset>
+    
+    <br>
+    
+    <fieldset><legend>Course #2</legend>     
+    <table>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject2">
+      <label><span>Subject</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject2">
+      <span tal:content="here/subject2">[subject2]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course2">
+      <label><span>Course Number</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course2">
+      <span tal:content="here/course2">[course2]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits2">
+      <label><span>Credits</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits2">
+      <span tal:content="here/credits2|nothing">[credits2]</span> 
+    </div>
+    </td>
+    </tr>
+    </table>
+    </fieldset>
+    
+    <br>
+    
+    <fieldset><legend>Course #3</legend>       
+    <table>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject3">
+      <label><span>Subject</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject3">
+      <span tal:content="here/subject3">[subject3]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course3">
+      <label><span>Course Number</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course3">
+      <span tal:content="here/course3">[course3]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits3">
+      <label><span>Credits</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits3">
+      <span tal:content="here/credits3|nothing">[credits3]</span> 
+    </div>
+    </td>
+    </tr>
+    </table>
+    </fieldset>
+    
+    <br>
+    
+    <fieldset><legend>Course #4</legend>       
+    <table>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject4">
+      <label><span>Subject</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject4">
+      <span tal:content="here/subject4">[subject4]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course4">
+      <label><span>Course Number</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course4">
+      <span tal:content="here/course4">[course4]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits4">
+      <label><span>Credits</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits4">
+      <span tal:content="here/credits4|nothing">[credits4]</span> 
+    </div>
+    </td>
+    </tr>
+    </table>
+    </fieldset>
+    
+    <br>
+    
+    <fieldset><legend>Course #5</legend>       
+    <table>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject5">
+      <label><span>Subject</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject5">
+      <span tal:content="here/subject5">[subject5]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course5">
+      <label><span>Course Number</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course5">
+      <span tal:content="here/course5">[course5]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits5">
+      <label><span>Credits</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits5">
+      <span tal:content="here/credits5|nothing">[credits5]</span> 
+    </div>
+    </td>
+    </tr>
+    </table>
+    </fieldset>
+    
+    <br>
+    
+    <fieldset><legend>Course #6</legend>     
+    <table>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject6">
+      <label><span>Subject</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-subject6">
+      <span tal:content="here/subject6">[subject6]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course6">
+      <label><span>Course Number</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-course6">
+      <span tal:content="here/course6">[course6]</span> 
+    </div>
+    </td>
+    </tr>
+    <tr>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits6">
+      <label><span>Credits</span>:</label>
+    </div>
+    </td>
+    <td>
+    <div class="field ArchetypesField-IntegerField"
+                     id="archetypes-fieldname-credits6">
+      <span tal:content="here/credits6|nothing">[credits6]</span> 
+    </div>
+    </td>
+    </tr>
+    </table>
+    </fieldset>
+      
+    <div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-readSyllabus">
+      <label><span>I have read the syllabus for the one-credit course International Studies 333</span>:</label>
+      <span tal:content="here/readSyllabus">[readSyllabus]<br />
+      </span> </div>
+    <div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-enrolledIS333">
+      <label><span>Enroll me in International Studies 333</span>:</label>
+              <div class="formHelp" id="enrolledIS333_help">You will only be enrolled if you have read the syllabus</div>
+      <span tal:content="here/enrolledIS333">[enrolledIS333]<br />
+      </span> </div>
+    </dd>
+    </dl>
+    </span>  
+    
+    
+    <span class="Financial_Aid">
+    <dl id="Financial_Aid" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Financial Aid</dt>
+            <dd class="collapsibleContent">
+      
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-applyForAid">
+      <label><span>Are you applying for financial aid?</span>:</label>
+              <div class="formHelp" id="applyForAid_help">If you are not
+                     applying for financial aid, skip to the next section.</div>
+      <span tal:content="here/applyForAid">[applyForAid]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-holdApplication">
+      <label><span>Should the OIE hold or process your application?</span>:</label>
+              <div class="formHelp" id="holdApplication_help">HOLD your Study Abroad Application (i.e. you will only study abroad IF financial aid is available; at this point the application fee is still refundable but the OIE is not reserving a seat for you), <br>or PROCESS your Study Abroad Applciation (i.e. you will study abroad regardless of your aid package; at this point the application fee is non-refundable and the OIE will reserve your seat.</div>
+      <span tal:content="here/holdApplication">[holdApplication]<br />
+      </span> </div>
+    </dd>
+    </dl>
+    </span>
+      
+    
+    
+    <span class="Accommodation_Preferences">
+    <dl id="Accommodation_Preferences" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Accommodation Preferences</dt>
+            <dd class="collapsibleContent">
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-roomType">
+      <label><span>Room Type</span>:</label>
+      <span tal:content="here/roomType">[roomType]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-roommateName1">
+      <label><span>Roommate 1 Name</span>:</label>
+      <span tal:content="here/roommateName1">[roommateName1]<br />
+      </span> </div>
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-roommateName2">
+      <label><span>Roommate 2 Name</span>:</label>
+      <span tal:content="here/roommateName2">[roommateName2]<br />
+      </span> </div>
+
+    </dd>
+    </dl>
+    </span>
+    
+    
+    
+    <span class="Expectations">
+    <dl id="Expectations" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Expectations</dt>
+            <dd class="collapsibleContent">
+    
+    <div class="field ArchetypesField-TextField"
+                     id="archetypes-fieldname-questionExpectations">
+      <label><span>Your Expectations For</span>:</label>
+              <div class="formHelp"
+                   id="questionExpectations_help">a) this program as a whole?<br>  b) the pre-travel general orientation session?<br>  c) the pre-travel academic sessions?<br>  d) your hosts (host institution, family, etc.) in the foreign country (if applicable)?</div>
+      <span tal:content="here/questionExpectations">[questionExpectations]<br />
+      </span> </div>
+    </dd>
+    </dl>
+    </span>
+    
+    
+    
+    <span class="Verification">
+    <dl id="Verification" class="collapsible collapsedOnLoad">
+            <dt class="collapsibleHeader">Verification</dt>
+            <dd class="collapsibleContent">
+    
+    <div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-awareOfAllMaterials">
+      <label><span>Are you aware of the application requirements for your program?</span>:</label>
+              <div class="formHelp"
+                   id="awareOfAllMaterials_help">Additional application requirements for select programs are listed on individual program web pages.  Not all programs have additional requirements.</div>
+      <span tal:content="here/awareOfAllMaterials">[awareOfAllMaterials]<br />
+      </span> </div>
+    <div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-UWOshkoshRelease">
+      <label><span>Release of Liability</span>:</label>
+              <div class="formHelp" id="UWOshkoshRelease_help">I hereby agree to hold harmless and indemnify the Board of Regents of the University of Wisconsin System and the University of Wisconsin Oshkosh, their officers, agents and employees, from any and all liability, loss, damages, costs or expenses which are sustained, incurred or required arising out of my actions.</div>
+      <span tal:content="here/UWOshkoshRelease">[UWOshkoshRelease]<br />
+      </span> </div>
+    <div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-certification">
+      <label><span>Certification</span>:</label>
+              <div class="formHelp" id="certification_help">I certify that the information stated above is true and correct.  If accepted to the program, I agree to follow all payment and withdrawal policies and to regularly check my UW Oshkosh email account for program information beginning today.  If I am a non-UW Oshkosh student, I will use and submit an email address that I check regularly.</div>
+      <span tal:content="here/certification">[certification]<br />
+      </span> </div>
+    </dd>
+    </dl>
+    </span>
+    
+    
+    
+    <span class="OFFICE_USE_ONLY" >
+    <dl id="OFFICE_USE_ONLY" class="collapsible collapsedOnLoad">
+            <dt tal:condition="python: context.has_faculty_permissions()"
+                class="collapsibleHeader">
+                OFFICE USE ONLY
+            </dt>
+            <dt tal:condition="python: not context.has_faculty_permissions()"
+                class="collapsibleHeader">
+                Application Status
+            </dt>
+            <dd class="collapsibleContent">
+    <br />
+    <table class="application_view">  
+		<tr>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                     	id="archetypes-fieldname-applicationIsComplete">
+      					<label><span>Application is Complete</span>:</label>
+    			</div>
+    		</td>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                    	id="archetypes-fieldname-applicationIsComplete">
+      				<span tal:content="here/applicationIsComplete">[applicationIsComplete]</span> 
+    			</div>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>
+    			<div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-seatNumber">
+      				<label><span>Seat Number</span>:</label>
+    			</div>
+    		</td>
+    		<td>
+    			<div class="field ArchetypesField-StringField"
+                     id="archetypes-fieldname-seatNumber">
+      				<span tal:content="here/seatNumber">[seatNumber]</span> 
+    			</div>
+    		</td>
+    	</tr>
+
+				
+			<tr tal:condition="python: context.has_faculty_permissions()">
+		    	<td>
+		    		<div class="field ArchetypesField-TextField"
+		                     id="archetypes-fieldname-comments">
+		      			<label><span>Comments</span>:</label>
+		    		</div>
+		    	</td>
+		    	<td>
+		    		<div class="field ArchetypesField-TextField"
+		                     id="archetypes-fieldname-comments">
+		      			<span tal:content="here/comments">[comments]</span> 
+		    		</div>
+		    	</td>
+		    </tr>
+    </table>
+	<h3>STEP II of the application process:</h3>
+	<table class="application_view">
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-applicationFeeOK">
+	      				<label><span>Application Fee Submitted?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-applicationFeeOK">
+	      				<span tal:content="here/applicationFeeOK|nothing">[applicationFeeOK]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-UWSystemStatementOK">
+	      				<label><span>UW System Statement of Responsibility Submitted?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-UWSystemStatementOK">
+	      				<span tal:content="here/UWSystemStatementOK|nothing">[UWSystemStatementOK]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-UWOshkoshStatementOK">
+	      				<label><span>UW Oshkosh Statement of Responsibility Submitted?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-UWOshkoshStatementOK">
+	      				<span tal:content="here/UWOshkoshStatementOK|nothing">[UWOshkoshStatementOK]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-withdrawalRefund">
+	      				<label><span>Withdrawal and Refund Form Submitted?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-withdrawalRefund">
+	      			<span tal:content="here/withdrawalRefund">[withdrawalRefund]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-transcriptsOK">
+	      				<label><span>Transcripts Submitted?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-transcriptsOK">
+	      			<span tal:content="here/transcriptsOK|nothing">[transcriptsOK]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-programSpecificMaterialsRequired">
+	      			<label><span>Program-Specific Materials Required(STEP II)?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-programSpecificMaterialsRequired">
+	      			<span tal:content="here/programSpecificMaterialsRequired|nothing">[programSpecificMaterialsRequired]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-programSpecificMaterialsOK">
+	      			<label><span>Program-Specific Materials Submitted(STEP II)?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-programSpecificMaterialsOK">
+	      			<span tal:content="here/programSpecificMaterialsOK|nothing">[programSpecificMaterialsOK]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-specialStudentFormRequired">
+	      			<label><span>Special Student Form Required?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-specialStudentFormRequired">
+	      			<span tal:content="here/specialStudentFormRequired|nothing">[specialStudentFormRequired]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-specialStudentFormOK">
+	      			<label><span>Special Student Form Submitted?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-specialStudentFormOK">
+	      			<span tal:content="here/specialStudentFormOK|nothing">[specialStudentFormOK]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-creditOverloadFormRequired">
+	      				<label><span>Credit Overload Form Required?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-creditOverloadFormRequired">
+	      			<span tal:content="here/creditOverloadFormRequired|nothing">[creditOverloadFormRequired]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-creditOverloadFormOK">
+	      			<label><span>Credit Overload Form Submitted?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-creditOverloadFormOK">
+	      			<span tal:content="here/creditOverloadFormOK|nothing">[creditOverloadFormOK]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+	</table>
+	<h3>STEP III of the aplication process:</h3>
+	<table class="application_view">
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-medicalOK">
+	      			<label><span>Medical information Submitted/Updated?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-medicalOK">
+	      			<span tal:content="here/medicalOK|nothing">[medicalOK]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-TextField"
+	                     id="archetypes-fieldname-medicalForm">
+	      			<label><span>Medical Form</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-TextField"
+	                     id="archetypes-fieldname-medicalForm">
+	      			<span tal:content="here/medicalForm">[medicalForm]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-passportOK">
+	      				<label><span>Passport information or receipt Submitted?</span>:</label>
+	    			</div>
+	    		</td>
+	    		<td>
+	    			<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-passportOK">
+	      			<span tal:content="here/passportOK|nothing">[passportOK]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-metPassportDeadline">
+	      			<label><span>Passport Deadline Met?</span>:</label>
+	    		</div>
+		    </td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-metPassportDeadline">
+	      			<span tal:content="here/metPassportDeadline">[metPassportDeadline]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-programSpecificMaterialsRequiredStepIII">
+	      			<label><span>Program-Specific Materials Required(STEP III)?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-programSpecificMaterialsRequiredStepIII">
+	      			<span tal:content="here/programSpecificMaterialsRequiredStepIII|nothing">[programSpecificMaterialsRequiredStepIII]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-programSpecificMaterialsOKStepIII">
+	      			<label><span>Program-Specific Materials Submitted(STEP III)?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-programSpecificMaterialsOKStepIII">
+	      			<span tal:content="here/programSpecificMaterialsOKStepIII|nothing">[programSpecificMaterialsOKStepIII]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+	<!--
+		<tr>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-programMaterials">
+      				<label><span>Program Materials</span>:</label>
+    			</div>
+    		</td>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-programMaterials">
+      				<span tal:content="here/programMaterials">[programMaterials]</span> 
+    			</div>
+    		</td>
+		</tr>
+	-->
+	</table>
+	<h3>Orientation</h3>
+	<table class="application_view">
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-attendedOrientation">
+	      			<label><span>Attended Orientation?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-attendedOrientation">
+	      				<span tal:content="here/attendedOrientation">[attendedOrientation]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-cisiDates">
+	      			<label><span>Health Insurance Dates</span>:</label>
+	              	<div class="formHelp" id="cisiDates_help">Cultural Insurance Services International</div>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-cisiDates">
+	      				<span tal:content="here/cisiDates">[cisiDates]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-IntegerField"
+	                     id="archetypes-fieldname-cisiNumberOfMonths">
+	      			<label><span>Health Insurance Number of Months</span>:</label>
+	              	<div class="formHelp" id="cisiNumberOfMonths_help">Cultural Insurance Services International</div>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-IntegerField"
+	                     id="archetypes-fieldname-cisiNumberOfMonths">
+	      			<span tal:content="here/cisiNumberOfMonths|nothing">[cisiNumberOfMonths]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+	</table>
+	<h3>Fees &amp; Payments</h3>
+	<table class="application_view">
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-financialAidGranted">
+	      			<label><span>Financial Aid Granted?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-financialAidGranted">
+	      			<span tal:content="here/financialAidGranted">[financialAidGranted]</span> 
+	    		</div>
+	    	</td>
+		</tr>	
+    	<tr>
+    		<td>
+    			<div class="field ArchetypesField-FloatField"
+                     id="archetypes-fieldname-programFee">
+      				<label><span>Program Fee</span>:</label>
+    			</div>
+    		</td>
+    		<td>
+    			<div class="field ArchetypesField-FloatField"
+                     id="archetypes-fieldname-programFee">
+      				<span tal:content="here/programFee|nothing">[programFee]</span> 
+    			</div>
+    		</td>
+    	</tr>
+    	<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-FloatField"
+	                     id="archetypes-fieldname-tuitionPayment">
+	      			<label><span>Tuition(student exchange only)</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-FloatField"
+	                     id="archetypes-fieldname-tuitionPayment">
+	      			<span tal:content="here/tuitionPayment|nothing">[tuitionPayment]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-depositOnTime">
+      				<label><span>Deposit Paid on Time(except exchange students)?</span>:</label>
+    			</div>
+    		</td>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-depositOnTime">
+      				<span tal:content="here/depositOnTime">[depositOnTime]</span> 
+    			</div>
+    		</td>
+    	</tr>
+    	<tr>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-payment2OnTime">
+      				<label><span>Final Payment Made on Time(except exchange students)?</span>:</label>
+    			</div>
+    		</td>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-payment2OnTime">
+      				<span tal:content="here/payment2OnTime">[payment2OnTime]</span> 
+    			</div>
+    		</td>
+    	</tr>
+    	<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-applicationFeeRefund">
+	      				<label><span>Application Fee Refunded?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-applicationFeeRefund">
+	      			<span tal:content="here/applicationFeeRefund">[applicationFeeRefund]</span> 
+	    		</div>
+	    	</td>
+		</tr>
+    </table>
+	<h3>Enrollment Abroad(for students transferring course only):</h3>
+    <table class="application_view">
+    	<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse1">
+	      			<label><span>Foreign institution course 1</span>:</label>
+	              	<div class="formHelp" id="foreignCourse1_help"></div>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse1">
+	      			<span tal:content="here/foreignCourse1|nothing">[foreignCourse1]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+        <tr>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse2">
+	      			<label><span>Foreign institution course 2</span>:</label>
+	              	<div class="formHelp" id="foreignCourse2_help"></div>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse2">
+	      			<span tal:content="here/foreignCourse2|nothing">[foreignCourse2]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse3">
+	      			<label><span>Foreign institution course 3</span>:</label>
+	              	<div class="formHelp" id="foreignCourse3_help"></div>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse3">
+	      			<span tal:content="here/foreignCourse3|nothing">[foreignCourse3]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse4">
+	      			<label><span>Foreign institution course 4</span>:</label>
+	              	<div class="formHelp" id="foreignCourse4_help"></div>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse4">
+	      			<span tal:content="here/foreignCourse4|nothing">[foreignCourse4]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse5">
+     				<label><span>Foreign institution course 5</span>:</label>
+	              	<div class="formHelp" id="foreignCourse5_help"></div>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse5">
+	      			<span tal:content="here/foreignCourse5|nothing">[foreignCourse5]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+	    <tr>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse6">
+	      			<label><span>Foreign institution course 6</span>:</label>
+	              	<div class="formHelp" id="foreignCourse6_help"></div>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-StringField"
+	                     id="archetypes-fieldname-foreignCourse6">
+	      			<span tal:content="here/foreignCourse6|nothing">[foreignCourse6]</span> 
+	    		</div>
+	    	</td>
+	    </tr>
+		<tr>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-papersOK">
+	      			<label><span>Papers information is OK?</span>:</label>
+	    		</div>
+	    	</td>
+	    	<td>
+	    		<div class="field ArchetypesField-BooleanField"
+	                     id="archetypes-fieldname-papersOK">
+	      			<span tal:content="here/papersOK|nothing">[papersOK]</span> 
+	    		</div>
+	    	</td>
+		</tr>
+		<tr>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-noMoreMaterials">
+      				<label><span>No More Materials?</span>:</label>
+    			</div>
+    		</td>
+    		<td>
+    			<div class="field ArchetypesField-BooleanField"
+                     id="archetypes-fieldname-noMoreMaterials">
+      				<span tal:content="here/noMoreMaterials">[noMoreMaterials]</span> 
+    			</div>
+    		</td>
+    	</tr>
+	</table>
+
+
+    </dd>
+    </dl>
+    </span>
+    </div>
+    </div>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,2 @@
+[actions]
+action.success..startOver = redirect_to:string:oieMassUpdateForm

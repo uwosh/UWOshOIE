@@ -1,0 +1,57 @@
+<!DOCTYPE HTML SYSTEM>
+<html>
+  <head>
+    <title tal:content="template/title">The title</title>
+  </head>
+
+  <body tal:define="errors options/state/getErrors;
+                    fieldName python: request.get('fieldName');
+                    emplids python: request.get('emplids');
+                    emplidsList python: filter(lambda x: x != '', map(lambda x: x.strip(), emplids.split('\r\n')))">
+    
+    <h2><span tal:replace="here/title_or_id">content title or id</span>: OIEStudentApplication Mass Update Form  - Step 2 of 2</h2>
+
+    <form method="POST" tal:attributes="action string:${here/absolute_url}/${template/id};">
+      <p>Select the applications that you would like updated:</p>
+
+      <table border="1px black solid">
+        <tr>
+          <th>Select</th>
+          <th>Emplid</th>
+          <th>Name</th>
+          <th>Program Semester & Name</th>
+          <th>Program Year</th>
+          <th>Application State</th>
+        </tr>
+        
+        <tal:block tal:repeat="emplid emplidsList">
+          <tal:block tal:define="brains python: here.queryCatalog({'getStudentID':emplid, })">
+            <tr tal:repeat="brain brains">
+              <td><input checked="checked" type="checkbox" name="objectIds" tal:attributes="value brain/id" /></td>
+              <td tal:content="emplid" />
+              <td><a tal:attributes="href brain/getPath" target="_blank"><span tal:content="string:${brain/getFirstName} ${brain/getLastName}" /></a></td>
+              <td tal:content="brain/getProgramName/Title" />
+              <td tal:content="string:${brain/getProgramSemester} ${brain/getProgramYear}" />
+              <td tal:content="brain/review_state" />
+            </tr>
+            <tr tal:condition="python: len(brains) == 0">
+              <td />
+              <td tal:content="emplid" />
+              <td colspan="4">No applications were found</td> 
+            </tr> 
+          </tal:block>
+        </tal:block>
+      </table>
+
+      <p class="error_message" tal:define="err errors/value|nothing" tal:condition="err"><b tal:content="err" /></p>
+      <p>Enter the new field value:<p/>
+      <p tal:content="structure python: context.getHtmlWidgetFromFieldName(fieldName)" />
+
+      <p><input type="submit" name="form.button.submit" value="Update All" /><input type="submit" name="form.button.cancel" value="Cancel" /></p>
+      <input type="hidden" name="form.submitted" value="1" />
+      <input type="hidden" name="fieldName" tal:attributes="value fieldName" />
+      <input type="hidden" name="emplids" tal:attributes="value emplids" />
+    </form>
+
+  </body>
+</html>

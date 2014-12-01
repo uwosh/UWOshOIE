@@ -1,0 +1,30 @@
+<!DOCTYPE HTML SYSTEM>
+<html>
+  <head>
+    <title tal:content="template/title">The title</title>
+  </head>
+  <body tal:define="errors options/state/getErrors">
+
+    <h2><span tal:replace="here/title_or_id">content title or id</span>: OIEStudentApplication Mass Update Form  - Step 1 of 2</h2>
+
+    <p>This form is super awesome and will allow you to simultaneously update a single field across multiple student applications.<br />
+       But, with great power comes great responsibility, so use it wisely.</p>
+
+    <form method="POST" tal:attributes="action string:${here/absolute_url}/${template/id};">
+      <p class="error_message" tal:define="err errors/emplids|nothing" tal:condition="err"><b tal:content="err" /></p>
+      <p>Enter emplids, one per line: <br>
+        <textarea name="emplids" id="emplids" cols="40" rows="20"></textarea>
+      </p>
+
+      <p class="error_message" tal:define="err errors/fieldName|nothing" tal:condition="err"><b tal:content="err" /></p>
+      <p>Select the "OFFICE USE ONLY" field that you would like to edit:<br />
+         <span tal:content="structure context/getFieldSelectionHtmlWidget" />
+      </p>
+
+      <p><input type="submit" name="form.button.submit" value="Submit" /></p>
+
+      <input type="hidden" name="form.submitted" value="1" />
+    </form>
+
+  </body>
+</html>

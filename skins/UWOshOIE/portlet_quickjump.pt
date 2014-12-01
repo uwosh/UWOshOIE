@@ -1,0 +1,80 @@
+<html xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      i18n:domain="plone">
+<body>
+<div metal:define-macro="portlet">
+
+    <dl class="portlet" id="portlet-quickjump">
+
+        <dt class="portletHeader">
+            <a href="#" i18n:translate="box_news">Quick Jump to</a>
+        </dt>
+
+<dt><a href="#Addresses">Addresses</a>
+</dt>
+
+<dt>
+<a href="#Transportation">Transportation</a>
+</dt>
+
+<dt>
+<a href="#Demographics">Demographics</a>
+</dt>
+
+<dt>
+<a href="#Orientation">Orientation</a>
+</dt>
+
+<dt>
+<a href="#Passport">Passport</a>
+</dt>
+
+<dt>
+<a href="#Courses">Courses</a>
+</dt>
+
+<dt>
+<a href="#Additional_Questions">Additional Questions</a>
+</dt>
+
+<dt>
+<a href="#Financial_Aid">Financial Aid</a>
+</dt>
+
+<dt>
+<a href="#Medical">Medical</a>
+</dt>
+
+<dt>
+<a href="#Accommodation_Preferences">Accommodation Prefs</a>
+</dt>
+
+<dt>
+<a href="#Preferences">Preferences</a>
+</dt>
+
+<dt>
+<a href="#Expectations">Expectations</a>
+</dt>
+
+<dt>
+<a href="#Emergency_Contacts">Emergency Contacts</a>
+</dt>
+
+<dt>
+<a href="#Verification">Verification</a>
+</dt>
+
+<dt>
+<a href="#Education">Education</a>
+</dt>
+
+<dt>
+<a href="#OFFICE_USE_ONLY">OFFICE USE ONLY</a>
+</dt>
+
+</dl>
+
+</div>
+</body>
+</html>
